@@ -14,7 +14,7 @@ Language: Java
 ## Different features
 
 - Area navigator to find shows in a particular neighbourhood.(People can 
-- type the name of the city to find different events)
+  type the name of the city to find different events)
 - Can print out tickets with the credentials of the user.
 - It shows brief information about the each event and also shows the number of tickets available.
 - Users can buy one or more tickets and organisers can set a limit on max tickets per account.

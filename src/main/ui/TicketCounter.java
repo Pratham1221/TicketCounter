@@ -44,6 +44,7 @@ public class TicketCounter {
                 + "(2) Log in into Current Account%n"
                 + "(3) Main menu%n");
         int userInput = input.nextInt();
+        input.nextLine();
         if (userInput == 1) {
             createAccount();
         } else if (userInput == 2) {
@@ -56,7 +57,6 @@ public class TicketCounter {
 
     public void createAccount() {
         System.out.print("Enter your name: ");
-        input.nextLine();
         String name = input.nextLine();
         String userName = createUserName();
         Organiser o = new Organiser(name, userName);
@@ -76,7 +76,7 @@ public class TicketCounter {
                 matched = false;
             } else {
                 for (int i = 0; i < organisersList.size(); i++) {
-                    if (organisersList.get(i).getUserName() == userName) {
+                    if (organisersList.get(i).getUserName().equals(userName)) {
                         System.out.println("Please try a different username");
                         matched = true;
                         break;
@@ -88,26 +88,27 @@ public class TicketCounter {
         return userName;
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logIn() {
         boolean accepted = false;
         String username = null;
         while (!accepted) {
             System.out.print("Enter your username: ");
+            //input.nextLine();
             username = input.nextLine();
-            input.nextLine();
             if (organisersList.size() == 0) {
                 System.out.println("No username exist, please try again!");
                 accepted = false;
             } else {
                 for (int i = 0; i < organisersList.size(); i++) {
-                    if (organisersList.get(i).getUserName() == username) {
-                        currentOrganiser = organisersList.get(i);
+                    if (organisersList.get(i).getUserName().equals(username)) {
                         accepted = true;
+                        currentOrganiser = organisersList.get(i);
                         break;
                     }
                     accepted = false;
                 }
-                if (accepted = false) {
+                if (accepted == false) {
                     System.out.println("No username exist, please try again!");
                 }
             }

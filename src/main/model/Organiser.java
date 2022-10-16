@@ -49,11 +49,11 @@ public class Organiser {
     }
 
     public void createEvent(String eventName, int tickets, String description, String date, String time) {
-        Event e = new Event(this,eventName, tickets, description, date, time);
+        Event e = new Event(this, eventName, tickets, description, date, time);
         myShows.add(e);
     }
 
-    public String myEvents() throws ParseException {
+    public String myEvents() {
         if (myShows.size() == 0) {
             return null;
         } else {
@@ -61,7 +61,7 @@ public class Organiser {
             do {
                 Event e = myShows.get(i);
                 i++;
-                return e.display();
+                return i + " " + e.display();
             } while (i < myShows.size());
         }
     }
@@ -88,6 +88,11 @@ public class Organiser {
 
     public void cancelShow(Event e) {
         myShows.remove(e);
+        Event.getEventList().remove(e);
+        for (int i = 0; i < e.getAttendees().size(); i++) {
+            int index = e.getAttendees().get(i).getMyShows().indexOf(e);
+            e.getAttendees().get(i).getMyShows().get(index).setDescription("Cancelled");
+        }
     }
 
     //public void create

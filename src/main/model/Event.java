@@ -90,29 +90,43 @@ public class Event {
         return time;
     }
 
-    public String displayDetiled() throws ParseException {
+    public String displayDetiled() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
         if (getTickets() == 0) {
-            return String.format("Event name: %-20s %s%nSold Out%nDescription %n%s%n", getEventName(),
-                    String.valueOf(sdf.parse(getDate())).substring(0, 10), getDescription());
+            try {
+                return String.format("Event name: %-20s %s %s%nSold Out%nDescription %n%s%n", getEventName(),
+                        String.valueOf(sdf.parse(getDate())).substring(0, 10), getTime(), getDescription());
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         } else {
-            return String.format("Event name: %-20s %s%nTickets Available: %d%nDescription %n%s%n", getEventName(),
-                    String.valueOf(sdf.parse(getDate())).substring(0, 10), getTickets(), getDescription());
+            try {
+                return String.format("Event name: %-20s %s %s%nTickets Available: %d%nDescription %n%s%n",
+                        getEventName(), String.valueOf(sdf.parse(getDate())).substring(0, 10), getTime(),
+                        getTickets(), getDescription());
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    public String display() throws ParseException {
+    public String display() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        return String.format("Event name: %-20s %s%n", getEventName(),
-                String.valueOf(sdf.parse(getDate())).substring(0, 10));
+        try {
+            return String.format("Event name: %-20s %s%n", getEventName(),
+                    String.valueOf(sdf.parse(getDate())).substring(0, 10));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
 
 //    public static void main(String[] args) throws ParseException {
-//        Event e = new Event("hello hacks", 100, "hackathon", "07-10-2022", "7-9");
-//        System.out.println(e.displayDetiled());
+////        Event e = new Event("hello hacks", 100, "hackathon", "07-10-2022", "7-9");
+////        System.out.println(e.displayDetiled());
+//        System.out.println("Enter a brief description of the event.(Use \"\\n\" to go to next line");
 //    }
 
 }

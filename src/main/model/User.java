@@ -34,33 +34,33 @@ public class User {
         return myShows;
     }
 
-    public void setMyShows(ArrayList<Event> myShows) {
-        this.myShows = myShows;
-    }
+//    public void setMyShows(ArrayList<Event> myShows) {
+//        this.myShows = myShows;
+//    }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
 
-    public String getName() {
-        return name;
-    }
+//    public String getName() {
+//        return name;
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public ArrayList<String> getMessages() {
         return messages;
     }
 
-    public void setMessages(ArrayList<String> messages) {
-        this.messages = messages;
-    }
+//    public void setMessages(ArrayList<String> messages) {
+//        this.messages = messages;
+//    }
 
     public String allEvents() {
         String s = "";

@@ -19,50 +19,50 @@ public class Organiser {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//    }
 
     public ArrayList<Event> getMyShows() {
         return myShows;
     }
 
-    public void setMyShows(ArrayList<Event> myShows) {
-        this.myShows = myShows;
-    }
+//    public void setMyShows(ArrayList<Event> myShows) {
+//        this.myShows = myShows;
+//    }
 
-    public String getName() {
-        return name;
-    }
+//    public String getName() {
+//        return name;
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public void createEvent(String eventName, int tickets, String description, String date, String time) {
         Event e = new Event(this, eventName, tickets, description, date, time);
         myShows.add(e);
     }
 
-    public void modifyDate(Event e, String date) {
-        e.setDate(date);
-    }
-
-    public void modifyTime(Event e, String time) {
-        e.setTime(time);
-    }
-
-    public void modifyName(Event e, String name) {
-        e.setEventName(name);
-    }
-
-    public void modifyTickets(Event e, int tickets) {
-        e.setTickets(tickets);
-    }
-
-    public void modifyDesciption(Event e, String description) {
-        e.setDescription(description);
-    }
+//    public void modifyDate(Event e, String date) {
+//        e.setDate(date);
+//    }
+//
+//    public void modifyTime(Event e, String time) {
+//        e.setTime(time);
+//    }
+//
+//    public void modifyName(Event e, String name) {
+//        e.setEventName(name);
+//    }
+//
+//    public void modifyTickets(Event e, int tickets) {
+//        e.setTickets(tickets);
+//    }
+//
+//    public void modifyDesciption(Event e, String description) {
+//        e.setDescription(description);
+//    }
 
     public void cancelShow(Event e) {
         String message = "Organiser of " + e.getEventName() + " has cancelled the event\nIt has been removed "

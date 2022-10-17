@@ -35,25 +35,25 @@ public class Event {
         return eventList;
     }
 
-    public static void setEventList(ArrayList<Event> eventList) {
-        Event.eventList = eventList;
-    }
+//    public static void setEventList(ArrayList<Event> eventList) {
+//        Event.eventList = eventList;
+//    }
 
     public ArrayList<User> getAttendees() {
         return attendees;
     }
 
-    public void setAttendees(ArrayList<User> attendees) {
-        this.attendees = attendees;
-    }
+//    public void setAttendees(ArrayList<User> attendees) {
+//        this.attendees = attendees;
+//    }
 
-    public Organiser getOrganiser() {
-        return organiser;
-    }
+//    public Organiser getOrganiser() {
+//        return organiser;
+//    }
 
-    public void setOrganiser(Organiser organiser) {
-        this.organiser = organiser;
-    }
+//    public void setOrganiser(Organiser organiser) {
+//        this.organiser = organiser;
+//    }
 
     public String getEventName() {
         return eventName;

@@ -7,6 +7,7 @@ import model.User;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// TicketCounter Application
 public class TicketCounter {
     private ArrayList<User> usersList = new ArrayList<User>();
     private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
@@ -16,16 +17,19 @@ public class TicketCounter {
     Scanner input = new Scanner(System.in);
     boolean quit = false;
 
+    //Effects: Starts the runApp method
     public TicketCounter() throws Exception {
         runApp();
     }
 
+    //Effects: Runs the Application
     public void runApp() throws Exception {
         while (!quit) {
             menu();
         }
     }
 
+    //Effects: Processes user input
     public void menu() throws Exception {
         System.out.printf("Welcome to TicketCounter %n"
                 + "1 Organiser %n"
@@ -444,22 +448,4 @@ public class TicketCounter {
         chooseOrganiserAction(e);
     }
 
-//    public void notifyChange(Event e, String changeType, String change) {
-//        String message = "Organiser of " + e.getEventName() + " changed the " + changeType
-//                + " to " + change;
-//        for (int i = 0; i < e.getAttendees().size(); i++) {
-//            e.getAttendees().get(i).getMessages().add(message);
-//        }
-//    }
-
-    //public void cancelOrganiserEvent(Event e) {
-//        String message = "Organiser of " + e.getEventName() + " has cancelled the event\nIt has been removed "
-//                + "from your events list";
-//        for (int i = 0; i < e.getAttendees().size(); i++) {
-//            e.getAttendees().get(i).getMessages().add(message);
-//        }
-//        currentOrganiser.cancelShow(e);
-//        System.out.println("Your event has been cancelled and all the attendees have been notified.");
-//        chooseOrganiserAction(e);
-    // }
 }

@@ -35,6 +35,7 @@ class EventTest {
         e1.setTickets(1);
         e1.setDate("21-12/2022");
         assertEquals("Error", e1.displayDetailed());
+        Event.getEventList().remove(e1);
     }
 
     @Test
@@ -45,7 +46,7 @@ class EventTest {
         e1.setTime("7pm");
         e1.setDate("12-12/2022");
         assertEquals("Error", e1.display());
-
+        Event.getEventList().remove(e1);
     }
 
     @Test

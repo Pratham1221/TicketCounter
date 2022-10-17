@@ -3,67 +3,36 @@ package model;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+/*Represents an Organiser of an event having name, username and
+  a list of all the shows organised by the organiser.
+ */
 public class Organiser {
     private ArrayList<Event> myShows;
     private String name;
     private String userName;
 
+    //Effects : Instantiates an organiser object with name and username
     public Organiser(String name, String userName) {
         this.userName = userName;
         this.name = name;
         this.myShows = new ArrayList<Event>();
-        //this.messages = new ArrayList<String>();
     }
 
     public String getUserName() {
         return userName;
     }
 
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//    }
-
-    public ArrayList<Event> getMyShows() {
-        return myShows;
-    }
-
-//    public void setMyShows(ArrayList<Event> myShows) {
-//        this.myShows = myShows;
-//    }
-
-//    public String getName() {
-//        return name;
-//    }
-
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-
+    //Requires: A date String in the format (dd-mm-yyyy)
+    //Modifies: myShows list
+    //Effects: Creates an event with the following inputs and add the event to the organiser's myShows
     public void createEvent(String eventName, int tickets, String description, String date, String time) {
         Event e = new Event(this, eventName, tickets, description, date, time);
         myShows.add(e);
     }
 
-//    public void modifyDate(Event e, String date) {
-//        e.setDate(date);
-//    }
-//
-//    public void modifyTime(Event e, String time) {
-//        e.setTime(time);
-//    }
-//
-//    public void modifyName(Event e, String name) {
-//        e.setEventName(name);
-//    }
-//
-//    public void modifyTickets(Event e, int tickets) {
-//        e.setTickets(tickets);
-//    }
-//
-//    public void modifyDesciption(Event e, String description) {
-//        e.setDescription(description);
-//    }
-
+    //Modifies: myShows, Event.eventList, event.description, event.description, user.messages
+    //Effects: Removes the show from Organisers events and Events List.
+    //         Informs this to the attendees and changes the event description to cancelled
     public void cancelShow(Event e) {
         String message = "Organiser of " + e.getEventName() + " has cancelled the event\nIt has been removed "
                 + "from your events list";
@@ -78,6 +47,8 @@ public class Organiser {
         }
     }
 
+    //Effects: Returns a String of all organiser's created events
+    //         or returns "There are no events" otherwise.
     public String allEvents() {
         String s = "";
         if (this.getMyShows().size() == 0) {
@@ -94,12 +65,19 @@ public class Organiser {
         return s;
     }
 
+    //Modifies : user.messages
+    //Effects: Adds an information message regarding the change in the event
+    //         in all the attendees messages list
     public void notifyChange(Event e, String changeType, String change) {
         String message = "Organiser of " + e.getEventName() + " changed the " + changeType
                 + " to " + change;
         for (int i = 0; i < e.getAttendees().size(); i++) {
             e.getAttendees().get(i).getMessages().add(message);
         }
+    }
+
+    public ArrayList<Event> getMyShows() {
+        return myShows;
     }
 
 

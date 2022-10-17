@@ -2,12 +2,16 @@ package model;
 
 import java.util.ArrayList;
 
+/*Represents the User panel having the name of the user,
+  username, shows list and messages list
+ */
 public class User {
     private ArrayList<Event> myShows;
     private String name;
     private String userName;
     private ArrayList<String> messages;
 
+    //Effects : Instantiates a user object with name and username
     public User(String name, String userName) {
         this.name = name;
         this.userName = userName;
@@ -15,6 +19,12 @@ public class User {
         this.messages = new ArrayList<String>();
     }
 
+    //Modifies: event.attendees, myShows, event.tickets
+    /*Effects: Returns a String informing the user that he/she
+      bought the ticket and the directory of the pdf ticket or
+      returns "you have already purchased a ticket" if the user
+      owns a ticket.
+    */
     public String buyTicket(Event e) throws Exception {
         if (this.getMyShows().contains(e)) {
             return "You have already purchased a ticket for this show!";
@@ -34,34 +44,16 @@ public class User {
         return myShows;
     }
 
-//    public void setMyShows(ArrayList<Event> myShows) {
-//        this.myShows = myShows;
-//    }
-
     public String getUserName() {
         return userName;
     }
-
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//    }
-
-//    public String getName() {
-//        return name;
-//    }
-
-//    public void setName(String name) {
-//        this.name = name;
-//    }
 
     public ArrayList<String> getMessages() {
         return messages;
     }
 
-//    public void setMessages(ArrayList<String> messages) {
-//        this.messages = messages;
-//    }
-
+    //Effects: Returns a String of all user's purchased events
+    //         or returns "There are no events" otherwise.
     public String allEvents() {
         String s = "";
         if (this.getMyShows().size() == 0) {

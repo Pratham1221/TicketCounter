@@ -46,4 +46,13 @@ class EventTest {
         assertTrue(e1.createTicket("pratham"));
     }
 
+    @Test
+    void testShowEvents() {
+        assertEquals("1 " + Event.getEventList().get(0).display() + "\n" +
+                "2 " + Event.getEventList().get(0).display() + "\n", Event.showEvent());
+        Event.getEventList().remove(e1);
+        assertEquals("1 " + Event.getEventList().get(0).display() + "\n",Event.showEvent());
+    }
+
+
 }

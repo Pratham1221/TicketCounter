@@ -17,19 +17,25 @@ public class UserTest {
     }
 
     @Test
-    void testBuyTicket() {
+    void testBuyTicket() throws Exception {
         assertEquals("You have successfully bought a ticket for " + e1.getEventName()
                 + " \nYour ticket has been generated! "
                 + "Please find it in " + System.getProperty("user.dir") + "\\" +
                 e1.getEventName() + ".pdf", u1.buyTicket(e1));
+        assertEquals("You have already purchased a ticket for this show!",u1.buyTicket(e1));
 
     }
 
     @Test
-    void testAllEvents() {
+    void testAllEvents() throws Exception {
         u1.buyTicket(e1);
         assertEquals("1 " + u1.getMyShows().get(0).display() + "\n", u1.allEvents());
         u1.getMyShows().remove(e1);
         assertEquals("There are no events\n", u1.allEvents());
+    }
+
+    @Test
+    void testGetUserName() {
+        assertEquals("pratham1221",u1.getUserName());
     }
 }

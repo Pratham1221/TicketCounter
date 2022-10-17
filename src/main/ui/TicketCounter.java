@@ -16,17 +16,17 @@ public class TicketCounter {
     Scanner input = new Scanner(System.in);
     boolean quit = false;
 
-    public TicketCounter() {
+    public TicketCounter() throws Exception {
         runApp();
     }
 
-    public void runApp() {
+    public void runApp() throws Exception {
         while (!quit) {
             menu();
         }
     }
 
-    public void menu() {
+    public void menu() throws Exception {
         System.out.printf("Welcome to TicketCounter %n"
                 + "1 Organiser %n"
                 + "2 User %n"
@@ -44,7 +44,7 @@ public class TicketCounter {
         }
     }
 
-    public void organiserLogin() {
+    public void organiserLogin() throws Exception {
         System.out.printf("(1) Create Organiser Account%n"
                 + "(2) Log in into Current Account%n"
                 + "(3) Main menu%n"
@@ -61,7 +61,7 @@ public class TicketCounter {
 
     }
 
-    public void userLogin() {
+    public void userLogin() throws Exception {
         System.out.printf("(1) Create Your Account%n"
                 + "(2) Log in into Current Account%n"
                 + "(3) Main menu%n"
@@ -77,7 +77,7 @@ public class TicketCounter {
         }
     }
 
-    public void createAccount() {
+    public void createAccount() throws Exception {
         if (checkUser == 0) {
             System.out.print("Enter your name: ");
             String name = input.nextLine();
@@ -144,7 +144,7 @@ public class TicketCounter {
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public void logInOrganiser() {
+    public void logInOrganiser() throws Exception {
         boolean accepted = false;
         String username = null;
         while (!accepted) {
@@ -173,7 +173,7 @@ public class TicketCounter {
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public void logInUser() {
+    public void logInUser() throws Exception {
         boolean accepted = false;
         String username = null;
         while (!accepted) {
@@ -201,7 +201,7 @@ public class TicketCounter {
         logInScreen();
     }
 
-    public void logInScreen() {
+    public void logInScreen() throws Exception {
         if (checkUser == 0) {
             System.out.println("User: " + currentOrganiser.getUserName());
             System.out.printf("(1) Organiser Tab%n"
@@ -227,7 +227,7 @@ public class TicketCounter {
         }
     }
 
-    public void organiserMenu() {
+    public void organiserMenu() throws Exception {
         System.out.printf("(1) Create new event%n"
                 + "(2) Show/Manage my events%n"
                 + "(3) Main menu%n");
@@ -242,7 +242,7 @@ public class TicketCounter {
         }
     }
 
-    public void addEvent() {
+    public void addEvent() throws Exception {
         System.out.print("Enter the event name: ");
         String eventName = input.nextLine();
         System.out.print("Enter the number of tickets available: ");
@@ -259,7 +259,7 @@ public class TicketCounter {
         organiserMenu();
     }
 
-    public void userMenu() {
+    public void userMenu() throws Exception {
         System.out.printf("(1) Show all events%n"
                 + "(2) Show/Manage my events%n"
                 + "(3) Check messages%n"
@@ -277,7 +277,7 @@ public class TicketCounter {
         }
     }
 
-    public void userMessages() {
+    public void userMessages() throws Exception {
         if (currentUser.getMessages().size() == 0) {
             System.out.println("You have no messages!");
         } else {
@@ -290,7 +290,7 @@ public class TicketCounter {
         userMenu();
     }
 
-    public void userEvents() {
+    public void userEvents() throws Exception {
         System.out.println(currentUser.allEvents());
         if (currentUser.getMyShows().size() == 0) {
             System.out.printf("(2) Go Back%n");
@@ -315,7 +315,7 @@ public class TicketCounter {
 
     }
 
-    public void showEvent() {
+    public void showEvent() throws Exception {
 //        if (Event.getEventList().size() == 0) {
 //            System.out.println("There are no events");
 //            System.out.printf("(2) Go Back%n");
@@ -352,7 +352,7 @@ public class TicketCounter {
         }
     }
 
-    public void buyTickets(Event e) {
+    public void buyTickets(Event e) throws Exception {
         System.out.printf("(1) Buy ticket for this Show%n"
                 + "(2) Go Back%n");
         int user = input.nextInt();
@@ -365,7 +365,7 @@ public class TicketCounter {
         }
     }
 
-    public void organiserEvents() {
+    public void organiserEvents() throws Exception {
         System.out.println(currentOrganiser.allEvents());
         if (currentOrganiser.getMyShows().size() == 0) {
             System.out.printf("(2) Go Back%n");
@@ -389,7 +389,7 @@ public class TicketCounter {
         }
     }
 
-    public void chooseOrganiserAction(Event e) {
+    public void chooseOrganiserAction(Event e) throws Exception {
         System.out.printf("(1) Modify Event(Will send a message about the modification to all attendees)%n"
                 + "(2) Cancel Event(Will notify the attendees as well)%n"
                 + "(3) Go Back%n");
@@ -407,7 +407,7 @@ public class TicketCounter {
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public void modifyOrganiserEvent(Event e) {
+    public void modifyOrganiserEvent(Event e) throws Exception {
         System.out.printf("(1) Modify Name%n" + "(2) Modify Date/Time%n" + "(3) Modify Tickets Available%n"
                 + "(4) Modify Event Description%n" + "(5) Go Back%n");
         int user = input.nextInt();
@@ -461,5 +461,5 @@ public class TicketCounter {
 //        currentOrganiser.cancelShow(e);
 //        System.out.println("Your event has been cancelled and all the attendees have been notified.");
 //        chooseOrganiserAction(e);
-   // }
+    // }
 }

@@ -103,7 +103,7 @@ public class Event {
                 return String.format("Event name: %-20s %s %s%nSold Out%nDescription %n%s%n", getEventName(),
                         String.valueOf(sdf.parse(getDate())).substring(0, 10), getTime(), getDescription());
             } catch (ParseException e) {
-                throw new RuntimeException(e);
+                return  "Error";
             }
         } else {
             try {
@@ -111,7 +111,7 @@ public class Event {
                         getEventName(), String.valueOf(sdf.parse(getDate())).substring(0, 10), getTime(),
                         getTickets(), getDescription());
             } catch (ParseException e) {
-                throw new RuntimeException(e);
+                return "Error";
             }
         }
     }
@@ -122,39 +122,29 @@ public class Event {
             return String.format("Event name: %-20s %s%n", getEventName(),
                     String.valueOf(sdf.parse(getDate())).substring(0, 10));
         } catch (ParseException e) {
-            throw new RuntimeException(e);
+            return "Error";
         }
 
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    public boolean createTicket(String name)  {
+    public boolean createTicket(String name) throws Exception {
         Document document = new Document();
         Rectangle rec =  new Rectangle(PageSize.A4);
         document.setPageSize(rec);
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(this.getEventName() + ".pdf"));
-        } catch (DocumentException e) {
-            throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        PdfWriter.getInstance(document, new FileOutputStream(this.getEventName() + ".pdf"));
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
         Paragraph p = new Paragraph(getEventName() + "!",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD));
         p.setSpacingAfter(30f);
-        try {
-            document.add(p);
-            document.add(new Paragraph("Registration Confirmation"));
-            document.add(new Paragraph("Name: " + name));
-            document.add(new Paragraph("Date/time of event: "
-                    + String.valueOf(sdf.parse(getDate())).substring(0, 10) + " " + getTime()));
-            document.add(new Paragraph("Brief description of the event " + "\n" + getDescription()));
-            document.add(Chunk.NEWLINE);
-            document.add(new Paragraph("Thank you so much for attending!\n\nWe will meet you at the event."));
-        } catch (DocumentException | ParseException e) {
-            throw new RuntimeException(e);
-        }
+        document.add(p);
+        document.add(new Paragraph("Registration Confirmation"));
+        document.add(new Paragraph("Name: " + name));
+        document.add(new Paragraph("Date/time of event: "
+                + String.valueOf(sdf.parse(getDate())).substring(0, 10) + " " + getTime()));
+        document.add(new Paragraph("Brief description of the event " + "\n" + getDescription()));
+        document.add(Chunk.NEWLINE);
+        document.add(new Paragraph("Thank you so much for attending!\n\nWe will meet you at the event."));
         document.close();
         return true;
     }
@@ -174,4 +164,11 @@ public class Event {
         }
         return s;
     }
+
+//    public static void main(String[] args) {
+//        Event e = new Event(new Organiser("Pratham","pratham1221"),"Hello Hacks",21,
+//                "It is hackathon","21-12-2022","7:30");
+//
+//        System.out.println(Event.getEventList().size());
+//    }
 }

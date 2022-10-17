@@ -15,7 +15,7 @@ public class User {
         this.messages = new ArrayList<String>();
     }
 
-    public String buyTicket(Event e) {
+    public String buyTicket(Event e) throws Exception {
         if (this.getMyShows().contains(e)) {
             return "You have already purchased a ticket for this show!";
         } else {

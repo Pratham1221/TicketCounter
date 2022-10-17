@@ -61,4 +61,21 @@ public class User {
     public void setMessages(ArrayList<String> messages) {
         this.messages = messages;
     }
+
+    public String allEvents() {
+        String s = "";
+        if (this.getMyShows().size() == 0) {
+            s = "There are no events\n";
+        } else {
+            int[] arr = new int[this.getMyShows().size()];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = i + 1;
+            }
+            for (int i = 0; i < this.getMyShows().size(); i++) {
+                s =  s + arr[i] + " " + this.getMyShows().get(i).display() + "\n";
+            }
+        }
+        return s;
+    }
+
 }

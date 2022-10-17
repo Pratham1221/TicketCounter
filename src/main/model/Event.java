@@ -95,7 +95,7 @@ public class Event {
         return time;
     }
 
-    public String displayDetiled() {
+    public String displayDetailed() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
         if (getTickets() == 0) {
@@ -127,7 +127,8 @@ public class Event {
 
     }
 
-    public void createTicket(String name)  {
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public boolean createTicket(String name)  {
         Document document = new Document();
         Rectangle rec =  new Rectangle(PageSize.A4);
         document.setPageSize(rec);
@@ -140,7 +141,7 @@ public class Event {
         }
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         document.open();
-        Paragraph p = new Paragraph(getEventName(),FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD));
+        Paragraph p = new Paragraph(getEventName() + "!",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD));
         p.setSpacingAfter(30f);
         try {
             document.add(p);
@@ -155,6 +156,22 @@ public class Event {
             throw new RuntimeException(e);
         }
         document.close();
+        return true;
     }
 
+    public static String showEvent() {
+        String s = "";
+        if (getEventList().size() == 0) {
+            s = "There are no events\n";
+        } else {
+            int[] arr = new int[getEventList().size()];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = i + 1;
+            }
+            for (int i = 0; i < getEventList().size(); i++) {
+                s =  s + arr[i] + " " + getEventList().get(i).display() + "\n";
+            }
+        }
+        return s;
+    }
 }

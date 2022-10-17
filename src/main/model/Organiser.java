@@ -5,9 +5,15 @@ import java.util.ArrayList;
 
 public class Organiser {
     private ArrayList<Event> myShows;
-    //private ArrayList<String> messages;
     private String name;
     private String userName;
+
+    public Organiser(String name, String userName) {
+        this.userName = userName;
+        this.name = name;
+        this.myShows = new ArrayList<Event>();
+        //this.messages = new ArrayList<String>();
+    }
 
     public String getUserName() {
         return userName;
@@ -15,13 +21,6 @@ public class Organiser {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public Organiser(String name, String userName) {
-        this.userName = userName;
-        this.name = name;
-        this.myShows = new ArrayList<Event>();
-        //this.messages = new ArrayList<String>();
     }
 
     public ArrayList<Event> getMyShows() {
@@ -45,19 +44,6 @@ public class Organiser {
         myShows.add(e);
     }
 
-    public String myEvents() {
-        if (myShows.size() == 0) {
-            return null;
-        } else {
-            int i = 0;
-            do {
-                Event e = myShows.get(i);
-                i++;
-                return i + " " + e.display();
-            } while (i < myShows.size());
-        }
-    }
-
     public void modifyDate(Event e, String date) {
         e.setDate(date);
     }
@@ -79,11 +65,40 @@ public class Organiser {
     }
 
     public void cancelShow(Event e) {
+        String message = "Organiser of " + e.getEventName() + " has cancelled the event\nIt has been removed "
+                + "from your events list";
         myShows.remove(e);
         Event.getEventList().remove(e);
         for (int i = 0; i < e.getAttendees().size(); i++) {
             int index = e.getAttendees().get(i).getMyShows().indexOf(e);
             e.getAttendees().get(i).getMyShows().get(index).setDescription("Cancelled");
+        }
+        for (int i = 0; i < e.getAttendees().size(); i++) {
+            e.getAttendees().get(i).getMessages().add(message);
+        }
+    }
+
+    public String allEvents() {
+        String s = "";
+        if (this.getMyShows().size() == 0) {
+            s = "There are no events\n";
+        } else {
+            int[] arr = new int[this.getMyShows().size()];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = i + 1;
+            }
+            for (int i = 0; i < this.getMyShows().size(); i++) {
+                s =  s + arr[i] + " " + this.getMyShows().get(i).display() + "\n";
+            }
+        }
+        return s;
+    }
+
+    public void notifyChange(Event e, String changeType, String change) {
+        String message = "Organiser of " + e.getEventName() + " changed the " + changeType
+                + " to " + change;
+        for (int i = 0; i < e.getAttendees().size(); i++) {
+            e.getAttendees().get(i).getMessages().add(message);
         }
     }
 

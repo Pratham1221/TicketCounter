@@ -1,8 +1,6 @@
 # TicketCounter
 This is a tickets buying and selling platorm where organisers can sell their tickets
-and people can buy tickets for their favourite shows. There are different categories of 
-various sorts of events and shows. It also has a area navigator where users can 
-find a list of shows happening in a particular area. On the other side people who want to 
+and people can buy tickets for their favourite shows. People who want to 
 sell their tickets can use this platform to sell tickets in "pdf"
  form where the ticket will have the desired credentials of the person buying their tickets.
 
@@ -13,11 +11,10 @@ definitley use it if I ever organised an event.
 Language: Java
 ## Different features
 
-- Area navigator to find shows in a particular neighbourhood.(People can 
-  type the name of the city to find different events)
+- Has features like add, modify and cancel events. And also displays all current events.
 - Can print out tickets with the credentials of the user.
-- It shows brief information about the each event and also shows the number of tickets available.
-- Users can buy one or more tickets and organisers can set a limit on max tickets per account.
+- Users and Organisers have different accounts and can sign in at any time to view their current events.
+- It informs the user if the organiser make any changes to the show. (For Example : modify/cancel show)
 
 ## User Stories
 

@@ -1,11 +1,9 @@
 package ui;
 
 import model.Event;
-import model.EventList;
 import model.Organiser;
 import model.User;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 

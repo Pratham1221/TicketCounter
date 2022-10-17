@@ -16,11 +16,18 @@ public class User {
     }
 
     public String buyTicket(Event e) {
-        e.getAttendees().add(this);
-        myShows.add(e);
-        e.setTickets(e.getTickets() - 1);
-        //e.getOrganiser().getMessages().add(getName() + "purchased a ticket");
-        return "You have successfully bought a ticket for " + e.getEventName();
+        if (this.getMyShows().contains(e)) {
+            return "You have already purchased a ticket for this show!";
+        } else {
+            e.getAttendees().add(this);
+            myShows.add(e);
+            e.setTickets(e.getTickets() - 1);
+            e.createTicket(this.name);
+            //e.getOrganiser().getMessages().add(getName() + "purchased a ticket");
+            return "You have successfully bought a ticket for " + e.getEventName()
+                    + " \nYour ticket has been generated! "
+                    + "Please find it in " + System.getProperty("user.dir") + "\\" + e.getEventName() + ".pdf";
+        }
     }
 
     public ArrayList<Event> getMyShows() {

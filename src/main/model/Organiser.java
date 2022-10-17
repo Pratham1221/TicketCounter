@@ -32,14 +32,6 @@ public class Organiser {
         this.myShows = myShows;
     }
 
-//    public ArrayList<String> getMessages() {
-//        return messages;
-//    }
-
-//    public void setMessages(ArrayList<String> messages) {
-//        this.messages = messages;
-//    }
-
     public String getName() {
         return name;
     }
@@ -94,8 +86,6 @@ public class Organiser {
             e.getAttendees().get(i).getMyShows().get(index).setDescription("Cancelled");
         }
     }
-
-    //public void create
 
 
 }

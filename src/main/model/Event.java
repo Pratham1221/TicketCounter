@@ -1,5 +1,10 @@
 package model;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -122,11 +127,34 @@ public class Event {
 
     }
 
-
-//    public static void main(String[] args) throws ParseException {
-////        Event e = new Event("hello hacks", 100, "hackathon", "07-10-2022", "7-9");
-////        System.out.println(e.displayDetiled());
-//        System.out.println("Enter a brief description of the event.(Use \"\\n\" to go to next line");
-//    }
+    public void createTicket(String name)  {
+        Document document = new Document();
+        Rectangle rec =  new Rectangle(PageSize.A4);
+        document.setPageSize(rec);
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(this.getEventName() + ".pdf"));
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        document.open();
+        Paragraph p = new Paragraph(getEventName(),FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD));
+        p.setSpacingAfter(30f);
+        try {
+            document.add(p);
+            document.add(new Paragraph("Registration Confirmation"));
+            document.add(new Paragraph("Name: " + name));
+            document.add(new Paragraph("Date/time of event: "
+                    + String.valueOf(sdf.parse(getDate())).substring(0, 10) + " " + getTime()));
+            document.add(new Paragraph("Brief description of the event " + "\n" + getDescription()));
+            document.add(Chunk.NEWLINE);
+            document.add(new Paragraph("Thank you so much for attending!\n\nWe will meet you at the event."));
+        } catch (DocumentException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+        document.close();
+    }
 
 }

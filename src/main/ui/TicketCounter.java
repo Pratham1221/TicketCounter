@@ -48,6 +48,7 @@ public class TicketCounter {
         }
     }
 
+    // Effects : Creates an Organiser login page
     public void organiserLogin() throws Exception {
         System.out.printf("(1) Create Organiser Account%n"
                 + "(2) Log in into Current Account%n"
@@ -65,6 +66,7 @@ public class TicketCounter {
 
     }
 
+    // Effects : Creates a user login page
     public void userLogin() throws Exception {
         System.out.printf("(1) Create Your Account%n"
                 + "(2) Log in into Current Account%n"
@@ -81,6 +83,7 @@ public class TicketCounter {
         }
     }
 
+    // Effects:  opens a create account page for new users
     public void createAccount() throws Exception {
         if (checkUser == 0) {
             System.out.print("Enter your name: ");
@@ -103,6 +106,8 @@ public class TicketCounter {
         }
     }
 
+    // Effects : Checks if the username already exists or not and returns the
+    //           username if its accepted
     public String checkUserName() {
         String userName = null;
         boolean matched = true;
@@ -125,6 +130,8 @@ public class TicketCounter {
         return userName;
     }
 
+    // Effects : Checks if the username already exists or not and returns the
+    //           username if its accepted
     public String createUserName() {
         String userName = null;
         boolean matched = true;
@@ -147,6 +154,7 @@ public class TicketCounter {
         return userName;
     }
 
+    // Effects : asks for organisers credentials to make and account
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInOrganiser() throws Exception {
         boolean accepted = false;
@@ -176,6 +184,7 @@ public class TicketCounter {
         logInScreen();
     }
 
+    //Effects : Asks for users credentials to make a user account
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInUser() throws Exception {
         boolean accepted = false;
@@ -205,6 +214,7 @@ public class TicketCounter {
         logInScreen();
     }
 
+    //Effects: Shows the user a login screen
     public void logInScreen() throws Exception {
         if (checkUser == 0) {
             System.out.println("User: " + currentOrganiser.getUserName());
@@ -231,6 +241,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects : displays the organisers environment
     public void organiserMenu() throws Exception {
         System.out.printf("(1) Create new event%n"
                 + "(2) Show/Manage my events%n"
@@ -246,6 +257,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Add an event to the organisersList and eventsList
     public void addEvent() throws Exception {
         System.out.print("Enter the event name: ");
         String eventName = input.nextLine();
@@ -263,6 +275,7 @@ public class TicketCounter {
         organiserMenu();
     }
 
+    //Effects : Shows a users environment
     public void userMenu() throws Exception {
         System.out.printf("(1) Show all events%n"
                 + "(2) Show/Manage my events%n"
@@ -281,6 +294,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Displays users messages
     public void userMessages() throws Exception {
         if (currentUser.getMessages().size() == 0) {
             System.out.println("You have no messages!");
@@ -294,6 +308,7 @@ public class TicketCounter {
         userMenu();
     }
 
+    //Effects: Displays user events
     public void userEvents() throws Exception {
         System.out.println(currentUser.allEvents());
         if (currentUser.getMyShows().size() == 0) {
@@ -319,6 +334,7 @@ public class TicketCounter {
 
     }
 
+    //Effects: Displays all the events in the made
     public void showEvent() throws Exception {
 //        if (Event.getEventList().size() == 0) {
 //            System.out.println("There are no events");
@@ -356,6 +372,8 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Shows a menu to user to buy a tickets and if the user buys a tickets
+    //         remove one tickets from the total tickets and saves a pdf ticket
     public void buyTickets(Event e) throws Exception {
         System.out.printf("(1) Buy ticket for this Show%n"
                 + "(2) Go Back%n");
@@ -369,6 +387,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Displays all the events in the organisersList
     public void organiserEvents() throws Exception {
         System.out.println(currentOrganiser.allEvents());
         if (currentOrganiser.getMyShows().size() == 0) {
@@ -393,6 +412,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Displays all the modification options the organiser can make
     public void chooseOrganiserAction(Event e) throws Exception {
         System.out.printf("(1) Modify Event(Will send a message about the modification to all attendees)%n"
                 + "(2) Cancel Event(Will notify the attendees as well)%n"
@@ -410,6 +430,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Shows a menu to organiser to modify events, once done reverts backs to chooseOrganiserAction()
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void modifyOrganiserEvent(Event e) throws Exception {
         System.out.printf("(1) Modify Name%n" + "(2) Modify Date/Time%n" + "(3) Modify Tickets Available%n"

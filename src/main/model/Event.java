@@ -2,6 +2,8 @@ package model;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -160,4 +162,36 @@ public class Event {
         return time;
     }
 
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Attendees List", attendeesToJson());
+        json.put("Organiser", organiser.toJson());
+        json.put("EventName", eventName);
+        json.put("Tickets",tickets);
+        json.put("Description", description);
+        json.put("date", date);
+        json.put("time", time);
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    public static JSONArray eventListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Event t : eventList) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    public JSONArray attendeesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User t : attendees) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
 }

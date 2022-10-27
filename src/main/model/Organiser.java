@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -7,6 +9,7 @@ import java.util.ArrayList;
   a list of all the shows organised by the organiser.
  */
 public class Organiser {
+    private static ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
     private ArrayList<Event> myShows;
     private String name;
     private String userName;
@@ -16,6 +19,7 @@ public class Organiser {
         this.userName = userName;
         this.name = name;
         this.myShows = new ArrayList<Event>();
+        organisersList.add(this);
     }
 
     public String getUserName() {
@@ -79,6 +83,15 @@ public class Organiser {
     public ArrayList<Event> getMyShows() {
         return myShows;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Shows List", myShows);
+        json.put("name", name);
+        json.put("User Name", userName);
+        return json;
+    }
+
 
 
 }

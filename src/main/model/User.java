@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /*Represents the User panel having the name of the user,
   username, shows list and messages list
  */
 public class User {
+    private static ArrayList<User> usersList = new ArrayList<User>();
     private ArrayList<Event> myShows;
     private String name;
     private String userName;
@@ -17,6 +20,7 @@ public class User {
         this.userName = userName;
         this.myShows = new ArrayList<Event>();
         this.messages = new ArrayList<String>();
+        usersList.add(this);
     }
 
     //Modifies: event.attendees, myShows, event.tickets
@@ -69,5 +73,16 @@ public class User {
         }
         return s;
     }
+
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Shows List", myShows);
+        json.put("name", name);
+        json.put("User Name", userName);
+        json.put("messages", getMessages());
+        return json;
+    }
+
+
 
 }

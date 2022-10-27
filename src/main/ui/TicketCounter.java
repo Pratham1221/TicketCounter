@@ -3,22 +3,30 @@ package ui;
 import model.Event;
 import model.Organiser;
 import model.User;
+import org.json.JSONArray;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // TicketCounter Application
 public class TicketCounter {
-    private ArrayList<User> usersList = new ArrayList<User>();
-    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
+    private static final String JSON_STORE = "./data/workroom.json";
+//    private ArrayList<User> usersList = new ArrayList<User>();
+//    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
     private Organiser currentOrganiser;
     private User currentUser;
     private static int checkUser;
     Scanner input = new Scanner(System.in);
     boolean quit = false;
+    private JsonWriter jsonWriter;
+    //private JsonReader jsonReader;
 
     //Effects: Starts the runApp method
     public TicketCounter() throws Exception {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        //jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
@@ -44,6 +52,7 @@ public class TicketCounter {
             checkUser = 1;
             userLogin();
         } else {
+            saveTicketCounter();
             quit = true;
         }
     }
@@ -467,6 +476,27 @@ public class TicketCounter {
             chooseOrganiserAction(e);
         }
         chooseOrganiserAction(e);
+    }
+
+    private void saveTicketCounter() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(Event.getEventList());
+            jsonWriter.close();
+            System.out.println("Saved to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    public JSONArray organisersListToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User t : attendees) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 
 }

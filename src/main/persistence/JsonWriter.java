@@ -29,11 +29,11 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(ArrayList<Event> arr,ArrayList<Organiser> arr1, ArrayList<User> arr2) {
+    public void write() {
         JSONObject json = new JSONObject();
-        json.put("Events List", Event.eventListToJson(arr));
-        json.put("Organisers List", Organiser.organisersListToJson(arr1));
-        json.put("Users List", User.userListToJson(arr2));
+        json.put("Events List", Event.eventListToJson(Event.getEventList()));
+        json.put("Organisers List", Organiser.organisersListToJson(Organiser.getOrganisersList()));
+        json.put("Users List", User.userListToJson(User.getUsersList()));
         saveToFile(json.toString(TAB));
 
     }

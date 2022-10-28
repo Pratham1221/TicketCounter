@@ -26,7 +26,9 @@ public class JsonReader {
     public void read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
-        parseList(jsonObject);
+        if (jsonObject.length() != 0) {
+            parseList(jsonObject);
+        }
     }
 
     // EFFECTS: reads source file as string and returns it

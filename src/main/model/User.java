@@ -33,6 +33,10 @@ public class User implements Writable {
         usersList.add(this);
     }
 
+    public String getName() {
+        return name;
+    }
+
     //Modifies: event.attendees, myShows, event.tickets
     /*Effects: Returns a String informing the user that he/she
       bought the ticket and the directory of the pdf ticket or

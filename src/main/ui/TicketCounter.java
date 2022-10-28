@@ -17,7 +17,7 @@ public class TicketCounter {
     private static final String JSON_STORE = "./data/ticketCounter.json";
 //    private ArrayList<User> usersList = new ArrayList<User>();
 //    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
-    private ArrayList data;
+   // private ArrayList data;
     private Organiser currentOrganiser;
     private User currentUser;
     private static int checkUser;
@@ -35,9 +35,22 @@ public class TicketCounter {
 
     //Effects: Runs the Application
     public void runApp() throws Exception {
-        loadTicketCounter();
+        System.out.println("Do you want to load previously saved data?");
+        System.out.printf("(1)Yes%n"
+                + "(2)No%n");
+        int user = input.nextInt();
+        if (user == 1) {
+            loadTicketCounter();
+        }
         while (!quit) {
             menu();
+        }
+        System.out.println("Do you want to save your data?");
+        System.out.printf("(1)Yes%n"
+                + "(2)No%n");
+        user = input.nextInt();
+        if (user == 1) {
+            saveTicketCounter();
         }
     }
 
@@ -56,7 +69,6 @@ public class TicketCounter {
             checkUser = 1;
             userLogin();
         } else {
-            saveTicketCounter();
             quit = true;
         }
     }
@@ -485,7 +497,7 @@ public class TicketCounter {
     private void saveTicketCounter() {
         try {
             jsonWriter.open();
-            jsonWriter.write(Event.getEventList(),Organiser.getOrganisersList(),User.getUsersList());
+            jsonWriter.write();
             jsonWriter.close();
             System.out.println("Saved to " + JSON_STORE);
         } catch (FileNotFoundException e) {

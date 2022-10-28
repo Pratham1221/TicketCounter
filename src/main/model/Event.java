@@ -17,6 +17,11 @@ import java.util.ArrayList;
  */
 public class Event implements Writable {
     private static ArrayList<Event> eventList = new ArrayList<Event>();
+
+    public Organiser getOrganiser() {
+        return organiser;
+    }
+
     //private ArrayList<User> attendees;
     private Organiser organiser;
     private String eventName;

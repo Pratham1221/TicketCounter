@@ -81,6 +81,10 @@ public class Organiser implements Writable {
 
     //Modifies : user.messages
     //Effects: Adds an information message regarding the change in the event
+
+    public String getName() {
+        return name;
+    }
     //         in all the attendees messages list
 //    public void notifyChange(Event e, String changeType, String change) {
 //        String message = "Organiser of " + e.getEventName() + " changed the " + changeType

@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 /*Represents an Event having Event Name, event organiser, attendees, no. of tickets,
   event description, date and time of event and a list of all events.
  */
-public class Event {
+public class Event implements Writable {
     private static ArrayList<Event> eventList = new ArrayList<Event>();
-    private ArrayList<User> attendees;
+    //private ArrayList<User> attendees;
     private Organiser organiser;
     private String eventName;
     private int tickets;
@@ -27,14 +28,14 @@ public class Event {
     //Requires: Organiser object, Event Name, No. of Tickets, Event Description, Event Date, Event Time
     //Modifies: this
     //Effects: Instantiates an Event object
-    public Event(Organiser organiser, String eventName, int tickets, String description, String date, String time) {
+    public Event(Organiser organiser,String eventName, int tickets, String description, String date, String time) {
         this.organiser = organiser;
         this.eventName = eventName;
         this.tickets = tickets;
         this.description = description;
         this.date = date;
         this.time = time;
-        attendees = new ArrayList<User>();
+        //attendees = new ArrayList<User>();
         eventList.add(this);
     }
 
@@ -118,9 +119,9 @@ public class Event {
         return eventList;
     }
 
-    public ArrayList<User> getAttendees() {
-        return attendees;
-    }
+//    public ArrayList<User> getAttendees() {
+//        return attendees;
+//    }
 
     public String getEventName() {
         return eventName;
@@ -162,9 +163,13 @@ public class Event {
         return time;
     }
 
+    public static void setEventList(ArrayList<Event> eventList) {
+        Event.eventList = eventList;
+    }
+
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Attendees List", attendeesToJson());
+        //json.put("Attendees List", attendees);
         json.put("Organiser", organiser.toJson());
         json.put("EventName", eventName);
         json.put("Tickets",tickets);
@@ -175,23 +180,23 @@ public class Event {
     }
 
     // EFFECTS: returns things in this workroom as a JSON array
-    public static JSONArray eventListToJson() {
+    public static JSONArray eventListToJson(ArrayList<Event> arr) {
         JSONArray jsonArray = new JSONArray();
 
-        for (Event t : eventList) {
+        for (Event t : arr) {
             jsonArray.put(t.toJson());
         }
 
         return jsonArray;
     }
 
-    public JSONArray attendeesToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (User t : attendees) {
-            jsonArray.put(t.toJson());
-        }
-
-        return jsonArray;
-    }
+//    public JSONArray attendeesToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//
+//        for (User t : attendees) {
+//            jsonArray.put(t.toJson());
+//        }
+//
+//        return jsonArray;
+//    }
 }

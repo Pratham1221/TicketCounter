@@ -4,34 +4,38 @@ import model.Event;
 import model.Organiser;
 import model.User;
 import org.json.JSONArray;
+import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // TicketCounter Application
 public class TicketCounter {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/ticketCounter.json";
 //    private ArrayList<User> usersList = new ArrayList<User>();
 //    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
+    private ArrayList data;
     private Organiser currentOrganiser;
     private User currentUser;
     private static int checkUser;
     Scanner input = new Scanner(System.in);
     boolean quit = false;
     private JsonWriter jsonWriter;
-    //private JsonReader jsonReader;
+    private JsonReader jsonReader;
 
     //Effects: Starts the runApp method
     public TicketCounter() throws Exception {
         jsonWriter = new JsonWriter(JSON_STORE);
-        //jsonReader = new JsonReader(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApp();
     }
 
     //Effects: Runs the Application
     public void runApp() throws Exception {
+        loadTicketCounter();
         while (!quit) {
             menu();
         }
@@ -100,7 +104,7 @@ public class TicketCounter {
             String userName = createUserName();
             Organiser o = new Organiser(name, userName);
             currentOrganiser = o;
-            organisersList.add(o);
+            //organisersList.add(o);
             System.out.println("Congratulations you have joined TicketCounter!");
             logInScreen();
         } else {
@@ -109,7 +113,7 @@ public class TicketCounter {
             String userName = checkUserName();
             User u = new User(name, userName);
             currentUser = u;
-            usersList.add(u);
+            //usersList.add(u);
             System.out.println("Congratulations you have joined TicketCounter!");
             logInScreen();
         }
@@ -123,11 +127,11 @@ public class TicketCounter {
         while (matched) {
             System.out.print("Please enter a username for your account: ");
             userName = input.nextLine();
-            if (usersList.size() == 0) {
+            if (User.getUsersList().size() == 0) {
                 matched = false;
             } else {
-                for (int i = 0; i < usersList.size(); i++) {
-                    if (usersList.get(i).getUserName().equals(userName)) {
+                for (int i = 0; i < User.getUsersList().size(); i++) {
+                    if (User.getUsersList().get(i).getUserName().equals(userName)) {
                         System.out.println("Please try a different username");
                         matched = true;
                         break;
@@ -147,11 +151,11 @@ public class TicketCounter {
         while (matched) {
             System.out.print("Please enter a username for your account: ");
             userName = input.nextLine();
-            if (organisersList.size() == 0) {
+            if (Organiser.getOrganisersList().size() == 0) {
                 matched = false;
             } else {
-                for (int i = 0; i < organisersList.size(); i++) {
-                    if (organisersList.get(i).getUserName().equals(userName)) {
+                for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+                    if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)) {
                         System.out.println("Please try a different username");
                         matched = true;
                         break;
@@ -172,14 +176,14 @@ public class TicketCounter {
             System.out.print("Enter your username: ");
             //input.nextLine();
             username = input.nextLine();
-            if (organisersList.size() == 0) {
+            if (Organiser.getOrganisersList().size() == 0) {
                 System.out.println("No username exist, please try again!");
                 accepted = false;
             } else {
-                for (int i = 0; i < organisersList.size(); i++) {
-                    if (organisersList.get(i).getUserName().equals(username)) {
+                for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+                    if (Organiser.getOrganisersList().get(i).getUserName().equals(username)) {
                         accepted = true;
-                        currentOrganiser = organisersList.get(i);
+                        currentOrganiser = Organiser.getOrganisersList().get(i);
                         break;
                     }
                     accepted = false;
@@ -202,14 +206,14 @@ public class TicketCounter {
             System.out.print("Enter your username: ");
             //input.nextLine();
             username = input.nextLine();
-            if (usersList.size() == 0) {
+            if (User.getUsersList().size() == 0) {
                 System.out.println("No username exist, please try again!");
                 accepted = false;
             } else {
-                for (int i = 0; i < usersList.size(); i++) {
-                    if (usersList.get(i).getUserName().equals(username)) {
+                for (int i = 0; i < User.getUsersList().size(); i++) {
+                    if (User.getUsersList().get(i).getUserName().equals(username)) {
                         accepted = true;
-                        currentUser = usersList.get(i);
+                        currentUser = User.getUsersList().get(i);
                         break;
                     }
                     accepted = false;
@@ -297,25 +301,25 @@ public class TicketCounter {
         } else if (userInput == 2) {
             userEvents();
         } else if (userInput == 3) {
-            userMessages();
+            //userMessages();
         } else {
             logInScreen();
         }
     }
 
     //Effects: Displays users messages
-    public void userMessages() throws Exception {
-        if (currentUser.getMessages().size() == 0) {
-            System.out.println("You have no messages!");
-        } else {
-            for (int i = 0; i < currentUser.getMessages().size(); i++) {
-                System.out.println(currentUser.getMessages().get(i));
-            }
-        }
-        System.out.println("Press enter to back");
-        input.nextLine();
-        userMenu();
-    }
+//    public void userMessages() throws Exception {
+//        if (currentUser.getMessages().size() == 0) {
+//            System.out.println("You have no messages!");
+//        } else {
+//            for (int i = 0; i < currentUser.getMessages().size(); i++) {
+//                System.out.println(currentUser.getMessages().get(i));
+//            }
+//        }
+//        System.out.println("Press enter to back");
+//        input.nextLine();
+//        userMenu();
+//    }
 
     //Effects: Displays user events
     public void userEvents() throws Exception {
@@ -450,7 +454,7 @@ public class TicketCounter {
             System.out.print("Enter the new Event Name: ");
             String name = input.nextLine();
             e.setEventName(name);
-            currentOrganiser.notifyChange(e, "Event Name", name);
+            //currentOrganiser.notifyChange(e, "Event Name", name);
             System.out.println("Change made Successfully");
         } else if (user == 2) {
             System.out.print("Enter the new date(dd-mm-yyyy): ");
@@ -459,7 +463,7 @@ public class TicketCounter {
             System.out.print("Enter the new time(eg. 7:30-9:30): ");
             String time = input.nextLine();
             e.setTime(time);
-            currentOrganiser.notifyChange(e, "date/time", date + " " + time);
+            //currentOrganiser.notifyChange(e, "date/time", date + " " + time);
             System.out.println("Change made Successfully");
         } else if (user == 3) {
             System.out.print("Enter the new amount of Tickets: ");
@@ -481,7 +485,7 @@ public class TicketCounter {
     private void saveTicketCounter() {
         try {
             jsonWriter.open();
-            jsonWriter.write(Event.getEventList());
+            jsonWriter.write(Event.getEventList(),Organiser.getOrganisersList(),User.getUsersList());
             jsonWriter.close();
             System.out.println("Saved to " + JSON_STORE);
         } catch (FileNotFoundException e) {
@@ -489,14 +493,23 @@ public class TicketCounter {
         }
     }
 
-    public JSONArray organisersListToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (User t : attendees) {
-            jsonArray.put(t.toJson());
+    private void loadTicketCounter() {
+        try {
+            jsonReader.read();
+            System.out.println("Loaded from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
-
-        return jsonArray;
     }
+
+//    public JSONArray organisersListToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//
+//        for (User t : attendees) {
+//            jsonArray.put(t.toJson());
+//        }
+//
+//        return jsonArray;
+//    }
 
 }

@@ -1,6 +1,8 @@
 package persistence;
 
 import model.Event;
+import model.Organiser;
+import model.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,9 +29,13 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: writes JSON representation of workroom to file
-    public void write(ArrayList<Event> arr) {
-        JSONArray json = Event.eventListToJson();
+    public void write(ArrayList<Event> arr,ArrayList<Organiser> arr1, ArrayList<User> arr2) {
+        JSONObject json = new JSONObject();
+        json.put("Events List", Event.eventListToJson(arr));
+        json.put("Organisers List", Organiser.organisersListToJson(arr1));
+        json.put("Users List", User.userListToJson(arr2));
         saveToFile(json.toString(TAB));
+
     }
 
     // MODIFIES: this

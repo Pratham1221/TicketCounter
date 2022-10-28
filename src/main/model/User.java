@@ -1,25 +1,35 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+import persistence.Writable;
 
 import java.util.ArrayList;
 
 /*Represents the User panel having the name of the user,
   username, shows list and messages list
  */
-public class User {
+public class User implements Writable {
     private static ArrayList<User> usersList = new ArrayList<User>();
     private ArrayList<Event> myShows;
     private String name;
     private String userName;
-    private ArrayList<String> messages;
+    //private ArrayList<String> messages;
+
+    public static ArrayList<User> getUsersList() {
+        return usersList;
+    }
+
+    public static void setUsersList(ArrayList<User> usersList) {
+        User.usersList = usersList;
+    }
 
     //Effects : Instantiates a user object with name and username
     public User(String name, String userName) {
         this.name = name;
         this.userName = userName;
         this.myShows = new ArrayList<Event>();
-        this.messages = new ArrayList<String>();
+        //this.messages = new ArrayList<String>();
         usersList.add(this);
     }
 
@@ -33,7 +43,7 @@ public class User {
         if (this.getMyShows().contains(e)) {
             return "You have already purchased a ticket for this show!";
         } else {
-            e.getAttendees().add(this);
+//            e.getAttendees().add(this);
             myShows.add(e);
             e.setTickets(e.getTickets() - 1);
             e.createTicket(this.name);
@@ -52,9 +62,9 @@ public class User {
         return userName;
     }
 
-    public ArrayList<String> getMessages() {
-        return messages;
-    }
+//    public ArrayList<String> getMessages() {
+//        return messages;
+//    }
 
     //Effects: Returns a String of all user's purchased events
     //         or returns "There are no events" otherwise.
@@ -79,8 +89,27 @@ public class User {
         json.put("Shows List", myShows);
         json.put("name", name);
         json.put("User Name", userName);
-        json.put("messages", getMessages());
+        //json.put("messages", messages);
         return json;
+    }
+
+//    public JSONArray myShowsToJson() {
+//        JSONArray jsonArray = new JSONArray();
+//        for (Event t : getMyShows()) {
+//            jsonArray.put(t.toJson());
+//        }
+//
+//        return jsonArray;
+//    }
+
+    public static JSONArray userListToJson(ArrayList<User> arr) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User t : arr) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 
 

@@ -38,4 +38,10 @@ public class UserTest {
     void testGetUserName() {
         assertEquals("pratham1221",u1.getUserName());
     }
+
+    @Test
+    void testGetName() {
+        assertEquals("Pratham",u1.getName());
+    }
+
 }

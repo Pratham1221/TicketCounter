@@ -11,9 +11,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonWriterTest {
-    //NOTE TO CPSC 210 STUDENTS: the strategy in designing tests for the JsonWriter is to
-    //write data to a file and then use the reader to read it back in and check that we
-    //read in a copy of what was written out.
 
     @Test
     void testWriterInvalidFile() {
@@ -28,15 +25,15 @@ class JsonWriterTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyTicketCounter() {
         try {
             //WorkRoom wr = new WorkRoom("My work room");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyTicketCounter.json");
             writer.open();
             writer.write();
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyTicketCounter.json");
             reader.read();
             assertEquals(0,Event.getEventList().size());
             assertEquals(0, Organiser.getOrganisersList().size());
@@ -47,7 +44,7 @@ class JsonWriterTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralTicketCounter() {
         try {
             //WorkRoom wr = new WorkRoom("My work room");
 //            wr.addThingy(new Thingy("saw", Category.METALWORK));
@@ -56,12 +53,12 @@ class JsonWriterTest {
             Event e = new Event(o,"hello hacks",20,"it is a hackathon",
                     "21-12-2022","3");
             User u = new User("pratham","pratha12");
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralTicketCounter.json");
             writer.open();
             writer.write();
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralTicketCounter.json");
             reader.read();
             assertEquals("hello hacks", Event.getEventList().get(0).getEventName());
             assertEquals(20, Event.getEventList().get(0).getTickets());
@@ -75,6 +72,9 @@ class JsonWriterTest {
             assertEquals("pratha12", User.getUsersList().get(0).getUserName());
             assertEquals("pratham", User.getUsersList().get(0).getName());
             assertEquals(0,User.getUsersList().get(0).getMyShows().size());
+            Event.getEventList().clear();
+            Organiser.getOrganisersList().clear();
+            User.getUsersList().clear();
 //            List<Thingy> thingies = wr.getThingies();
 //            assertEquals(2, thingies.size());
 //            checkThingy("saw", Category.METALWORK, thingies.get(0));

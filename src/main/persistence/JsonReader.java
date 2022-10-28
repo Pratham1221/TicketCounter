@@ -47,30 +47,30 @@ public class JsonReader {
         JSONArray e = jsonObject.getJSONArray("Events List");
         JSONArray o = jsonObject.getJSONArray("Organisers List");
         JSONArray u = jsonObject.getJSONArray("Users List");
-        ArrayList<Event> eventsList = new ArrayList<Event>();
-        ArrayList<Organiser> organiserList = new ArrayList<Organiser>();
-        ArrayList<User> userList = new ArrayList<User>();
+//        ArrayList<Event> eventsList = new ArrayList<Event>();
+//        ArrayList<Organiser> organiserList = new ArrayList<Organiser>();
+//        ArrayList<User> userList = new ArrayList<User>();
         for (Object json : e) {
             JSONObject nextThingy = (JSONObject) json;
-            addEvent(eventsList, organiserList, nextThingy);
+            addEvent(nextThingy);
         }
         for (Object json : o) {
             JSONObject nextThingy = (JSONObject) json;
-            addOrganiser(organiserList, nextThingy);
+            addOrganiser(nextThingy);
         }
         for (Object json : u) {
             JSONObject nextThingy = (JSONObject) json;
-            addUser(userList, nextThingy);
+            addUser(nextThingy);
         }
 
     }
 
-    private void addUser(ArrayList<User> userList, JSONObject jsonObject) {
+    private void addUser(JSONObject jsonObject) {
         JSONArray myShows = jsonObject.getJSONArray("Shows List");
         String userName = jsonObject.getString("User Name");
         String name = jsonObject.getString("name");
         User u = new User(name, userName);
-        userList.add(u);
+        //userList.add(u);
         for (Object json : myShows) {
             JSONObject nextThingy = (JSONObject) json;
             addShows(u, nextThingy);
@@ -86,29 +86,28 @@ public class JsonReader {
         }
     }
 
-    private void addOrganiser(ArrayList<Organiser> organiserList, JSONObject jsonObject) {
+    private void addOrganiser(JSONObject jsonObject) {
         String userName = jsonObject.getString("User Name");
         String name = jsonObject.getString("name");
-        Organiser org = null;
-        if (organiserList.size() == 0) {
-            org = new Organiser(name, userName);
-            organiserList.add(org);
+        if (Organiser.getOrganisersList().size() == 0) {
+            new Organiser(name, userName);
+            //organiserList.add(org);
         }
         int count = 0;
-        for (int i = 0; i < organiserList.size(); i++) {
-            if (organiserList.get(i).getUserName().equals(userName)) {
+        for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+            if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)) {
                 count++;
             }
         }
         if (count == 0) {
-            org = new Organiser(name, userName);
-            organiserList.add(org);
+            new Organiser(name, userName);
+            //organiserList.add(org);
         }
 
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
-    private void addEvent(ArrayList<Event> eventsList, ArrayList<Organiser> organiserList, JSONObject jsonObject) {
+    private void addEvent(JSONObject jsonObject) {
         String eventName = jsonObject.getString("EventName");
         String date = jsonObject.getString("date");
         int tickets = jsonObject.getInt("Tickets");
@@ -118,25 +117,26 @@ public class JsonReader {
         String userName = o.getString("User Name");
         String name = o.getString("name");
         Organiser org = null;
-        if (organiserList.size() == 0) {
+        if (Organiser.getOrganisersList().size() == 0) {
             org = new Organiser(name, userName);
-            organiserList.add(org);
+            //organiserList.add(org);
         }
-        for (int i = 0; i < organiserList.size(); i++) {
-            if (organiserList.get(i).getUserName().equals(userName)) {
-                org = organiserList.get(i);
+        for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+            if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)) {
+                org = Organiser.getOrganisersList().get(i);
                 break;
             }
         }
         if (org == null) {
             org = new Organiser(name, userName);
-            organiserList.add(org);
+            //organiserList.add(org);
         }
         Event e = new Event(org, eventName, tickets, description, date, time);
-        eventsList.add(e);
-        ArrayList<Event> myShows = org.getMyShows();
-        myShows.add(e);
-        org.setMyShows(myShows);
+        //eventsList.add(e);
+        org.getMyShows().add(e);
+//        ArrayList<Event> myShows = org.getMyShows();
+//        myShows.add(e);
+//        org.setMyShows(myShows);
     }
 
 //    private ArrayList<Event> addMyShows(ArrayList<Event> arr, JSONObject jsonObject) {

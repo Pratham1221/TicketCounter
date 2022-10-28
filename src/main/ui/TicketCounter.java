@@ -39,6 +39,7 @@ public class TicketCounter {
                 + "(2)No%n");
         int user = input.nextInt();
         if (user == 1) {
+            //loadTicketCounter();
             loadTicketCounter();
         }
         while (!quit) {

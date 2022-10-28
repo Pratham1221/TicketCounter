@@ -20,9 +20,6 @@ public class User implements Writable {
         return usersList;
     }
 
-    public static void setUsersList(ArrayList<User> usersList) {
-        User.usersList = usersList;
-    }
 
     //Effects : Instantiates a user object with name and username
     public User(String name, String userName) {

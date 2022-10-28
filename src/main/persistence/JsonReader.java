@@ -156,7 +156,6 @@ public class JsonReader {
 //        }
 //    }
 
-    // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to workroom
 //    private void addThingy(WorkRoom wr, JSONObject jsonObject) {
 //        String name = jsonObject.getString("name");

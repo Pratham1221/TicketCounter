@@ -16,8 +16,7 @@ import java.util.Scanner;
 public class TicketCounter {
     private static final String JSON_STORE = "./data/ticketCounter.json";
 //    private ArrayList<User> usersList = new ArrayList<User>();
-//    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>();
-   // private ArrayList data;
+//    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>()
     private Organiser currentOrganiser;
     private User currentUser;
     private static int checkUser;

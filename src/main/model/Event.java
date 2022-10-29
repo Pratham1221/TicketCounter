@@ -80,7 +80,6 @@ public class Event implements Writable {
 
     //Requires: A string with a name is entered
     //Effects: Creates an event ticket pdf format and stores it in the project directory
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public boolean createTicket(String name) throws Exception {
         Document document = new Document();
         Rectangle rec =  new Rectangle(PageSize.A4);
@@ -91,6 +90,21 @@ public class Event implements Writable {
         Paragraph p = new Paragraph(getEventName() + "!",FontFactory.getFont(FontFactory.TIMES_BOLD,20,Font.BOLD));
         p.setSpacingAfter(30f);
         document.add(p);
+        this.addThings(document,name);
+//        document.add(new Paragraph("Registration Confirmation"));
+//        document.add(new Paragraph("Name: " + name));
+//        document.add(new Paragraph("Date/time of event: "
+//                + String.valueOf(sdf.parse(getDate())).substring(0, 10) + " " + getTime()));
+//        document.add(new Paragraph("Brief description of the event " + "\n" + getDescription()));
+//        document.add(Chunk.NEWLINE);
+//        document.add(new Paragraph("Thank you so much for attending!\n\nWe will meet you at the event."));
+        document.close();
+        return true;
+    }
+
+    //Effects: Edits the pdf ticket
+    public void addThings(Document document,String name) throws DocumentException, ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         document.add(new Paragraph("Registration Confirmation"));
         document.add(new Paragraph("Name: " + name));
         document.add(new Paragraph("Date/time of event: "
@@ -98,8 +112,6 @@ public class Event implements Writable {
         document.add(new Paragraph("Brief description of the event " + "\n" + getDescription()));
         document.add(Chunk.NEWLINE);
         document.add(new Paragraph("Thank you so much for attending!\n\nWe will meet you at the event."));
-        document.close();
-        return true;
     }
 
     //Effects: Returns a String of all events created

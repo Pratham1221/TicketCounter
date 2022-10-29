@@ -180,7 +180,6 @@ public class TicketCounter {
     }
 
     // Effects : asks for organisers credentials to make and account
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInOrganiser() throws Exception {
         boolean accepted = false;
         String username = null;
@@ -208,7 +207,6 @@ public class TicketCounter {
     }
 
     //Effects : Asks for users credentials to make a user account
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInUser() throws Exception {
         boolean accepted = false;
         String username = null;
@@ -454,42 +452,65 @@ public class TicketCounter {
     }
 
     //Effects: Shows a menu to organiser to modify events, once done reverts backs to chooseOrganiserAction()
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void modifyOrganiserEvent(Event e) throws Exception {
         System.out.printf("(1) Modify Name%n" + "(2) Modify Date/Time%n" + "(3) Modify Tickets Available%n"
                 + "(4) Modify Event Description%n" + "(5) Go Back%n");
         int user = input.nextInt();
         input.nextLine();
         if (user == 1) {
-            System.out.print("Enter the new Event Name: ");
-            String name = input.nextLine();
-            e.setEventName(name);
+//            System.out.print("Enter the new Event Name: ");
+//            String name = input.nextLine();
+//            e.setEventName(name);
             //currentOrganiser.notifyChange(e, "Event Name", name);
-            System.out.println("Change made Successfully");
+            modifyName(e);
         } else if (user == 2) {
-            System.out.print("Enter the new date(dd-mm-yyyy): ");
-            String date = input.nextLine();
-            e.setDate(date);
-            System.out.print("Enter the new time(eg. 7:30-9:30): ");
-            String time = input.nextLine();
-            e.setTime(time);
+            modifyDateTime(e);
             //currentOrganiser.notifyChange(e, "date/time", date + " " + time);
-            System.out.println("Change made Successfully");
         } else if (user == 3) {
-            System.out.print("Enter the new amount of Tickets: ");
-            int tickets = input.nextInt();
-            input.nextLine();
-            e.setTickets(tickets);
-            System.out.println("Change made Successfully");
+            modifyTicketsAvailable(e);
         } else if (user == 4) {
-            System.out.println("Please write a new description: ");
-            String desc = input.nextLine();
-            e.setDescription(desc);
-            System.out.println("Change made Successfully");
+            modifyDescription(e);
         } else {
             chooseOrganiserAction(e);
         }
         chooseOrganiserAction(e);
+    }
+
+    //Effects: modify the name of the event
+    public void modifyName(Event e) {
+        System.out.print("Enter the new Event Name: ");
+        String name = input.nextLine();
+        e.setEventName(name);
+        //currentOrganiser.notifyChange(e, "Event Name", name);
+        System.out.println("Change made Successfully");
+    }
+
+    //Effects: Modifies the date and time of the event
+    public void modifyDateTime(Event e) {
+        System.out.print("Enter the new date(dd-mm-yyyy): ");
+        String date = input.nextLine();
+        e.setDate(date);
+        System.out.print("Enter the new time(eg. 7:30-9:30): ");
+        String time = input.nextLine();
+        e.setTime(time);
+        System.out.println("Change made Successfully");
+    }
+
+    //Effects: Modify the description of the event
+    public void modifyDescription(Event e) {
+        System.out.println("Please write a new description: ");
+        String desc = input.nextLine();
+        e.setDescription(desc);
+        System.out.println("Change made Successfully");
+    }
+
+    //Effects: modify the tickets available of the event
+    public void modifyTicketsAvailable(Event e) {
+        System.out.print("Enter the new amount of Tickets: ");
+        int tickets = input.nextInt();
+        input.nextLine();
+        e.setTickets(tickets);
+        System.out.println("Change made Successfully");
     }
 
     //Effects: Writes the all the program data in a json file and saves it

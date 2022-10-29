@@ -102,7 +102,7 @@ public class Event implements Writable {
         return true;
     }
 
-    //Effects: Edits the pdf ticket
+    //Effects: Edits the pdf tickets
     public void addThings(Document document,String name) throws DocumentException, ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         document.add(new Paragraph("Registration Confirmation"));

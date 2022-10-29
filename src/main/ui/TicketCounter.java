@@ -208,7 +208,6 @@ public class TicketCounter {
     }
 
     //Effects : Asks for users credentials to make a user account
-    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInUser() throws Exception {
         boolean accepted = false;
         String username = null;

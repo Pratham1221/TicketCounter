@@ -180,13 +180,12 @@ public class TicketCounter {
     }
 
     // Effects : asks for organisers credentials to make and account
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInOrganiser() throws Exception {
         boolean accepted = false;
         String username = null;
         while (!accepted) {
             System.out.print("Enter your username: ");
-            //input.nextLine();
             username = input.nextLine();
             if (Organiser.getOrganisersList().size() == 0) {
                 System.out.println("No username exist, please try again!");
@@ -205,12 +204,11 @@ public class TicketCounter {
                 }
             }
         }
-        System.out.println("Welcome Back");
         logInScreen();
     }
 
     //Effects : Asks for users credentials to make a user account
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    //@SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void logInUser() throws Exception {
         boolean accepted = false;
         String username = null;
@@ -235,7 +233,7 @@ public class TicketCounter {
                 }
             }
         }
-        System.out.println("Welcome Back");
+        //System.out.println("Welcome Back");
         logInScreen();
     }
 

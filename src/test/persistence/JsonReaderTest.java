@@ -88,6 +88,7 @@ class JsonReaderTest {
     @Test
     void testReaderOrganiserNoEvents() {
         JsonReader reader = new JsonReader("./data/testReaderOrganiserNoEvents.json");
+        Organiser.getOrganisersList().clear();
         try {
 //            Organiser o = new Organiser("pratham","pratham1221");
 //            JsonWriter writer = new JsonWriter("./data/testReaderOrganiserNoEvents.json");
@@ -101,7 +102,7 @@ class JsonReaderTest {
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
-        Organiser.getOrganisersList().clear();
+
     }
 
     @Test

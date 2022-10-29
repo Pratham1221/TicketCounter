@@ -1,5 +1,659 @@
 {
-    "Events List": [],
-    "Organisers List": [],
-    "Users List": []
+    "Events List": [
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "Pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "Pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 20,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "Pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 20,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "Pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 19,
+            "EventName": "hello hacks",
+            "time": "3"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratha12",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 20,
+            "EventName": "hello camp",
+            "time": "3"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 20,
+            "EventName": "hello hacks",
+            "time": "3"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 20,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 20,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is hackathon",
+            "Tickets": 21,
+            "EventName": "Hello Hacks",
+            "time": "7:30"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 19,
+            "EventName": "hello hacks",
+            "time": "3"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratha12",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 20,
+            "EventName": "hello camp",
+            "time": "3"
+        },
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "it is a hackathon",
+            "Tickets": 20,
+            "EventName": "hello hacks",
+            "time": "3"
+        }
+    ],
+    "Organisers List": [
+        {
+            "User Name": "pratham1221",
+            "name": "pratham"
+        },
+        {
+            "User Name": "pratha12",
+            "name": "pratham"
+        },
+        {
+            "User Name": "pratham1221",
+            "name": "pratham"
+        }
+    ],
+    "Users List": [
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [{
+                "date": "21-12-2022",
+                "Organiser": {
+                    "User Name": "pratham1221",
+                    "name": "pratham"
+                },
+                "Description": "It is hackathon",
+                "Tickets": 20,
+                "EventName": "Hello Hacks",
+                "time": "7:30"
+            }],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [{
+                "date": "21-12-2022",
+                "Organiser": {
+                    "User Name": "pratham1221",
+                    "name": "Pratham"
+                },
+                "Description": "It is hackathon",
+                "Tickets": 20,
+                "EventName": "Hello Hacks",
+                "time": "7:30"
+            }],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [{
+                "date": "21-12-2022",
+                "Organiser": {
+                    "User Name": "pratham1221",
+                    "name": "pratham"
+                },
+                "Description": "it is a hackathon",
+                "Tickets": 19,
+                "EventName": "hello hacks",
+                "time": "3"
+            }],
+            "User Name": "pratha12",
+            "name": "pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratha12",
+            "name": "pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                }
+            ],
+            "User Name": "pranjal1221",
+            "name": "pranjal"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "Pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 20,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "It is hackathon",
+                    "Tickets": 21,
+                    "EventName": "Hello Hacks",
+                    "time": "7:30"
+                }
+            ],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratham1221",
+            "name": "Pratham"
+        },
+        {
+            "Shows List": [
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "it is a hackathon",
+                    "Tickets": 19,
+                    "EventName": "hello hacks",
+                    "time": "3"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "it is a hackathon",
+                    "Tickets": 20,
+                    "EventName": "hello hacks",
+                    "time": "3"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "it is a hackathon",
+                    "Tickets": 19,
+                    "EventName": "hello hacks",
+                    "time": "3"
+                },
+                {
+                    "date": "21-12-2022",
+                    "Organiser": {
+                        "User Name": "pratham1221",
+                        "name": "pratham"
+                    },
+                    "Description": "it is a hackathon",
+                    "Tickets": 20,
+                    "EventName": "hello hacks",
+                    "time": "3"
+                }
+            ],
+            "User Name": "pratha12",
+            "name": "pratham"
+        },
+        {
+            "Shows List": [],
+            "User Name": "pratha12",
+            "name": "pratham"
+        }
+    ]
 }

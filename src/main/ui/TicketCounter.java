@@ -494,6 +494,7 @@ public class TicketCounter {
         chooseOrganiserAction(e);
     }
 
+    //Effects: Writes the all the program data in a json file and saves it
     private void saveTicketCounter() {
         try {
             jsonWriter.open();
@@ -505,6 +506,7 @@ public class TicketCounter {
         }
     }
 
+    //Effects: Loads the saved data from a json file
     private void loadTicketCounter() {
         try {
             jsonReader.read();

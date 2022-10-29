@@ -102,7 +102,7 @@ class JsonReaderTest {
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
-
+        Organiser.getOrganisersList().clear();
     }
 
     @Test

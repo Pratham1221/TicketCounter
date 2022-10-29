@@ -168,6 +168,16 @@ public class Event implements Writable {
         return time;
     }
 
+    // EFFECTS: returns events in the eventsList as a JSON array
+    public static JSONArray eventListToJson(ArrayList<Event> arr) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Event t : arr) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
 
 
     public JSONObject toJson() {
@@ -180,17 +190,6 @@ public class Event implements Writable {
         json.put("date", date);
         json.put("time", time);
         return json;
-    }
-
-    // EFFECTS: returns things in this workroom as a JSON array
-    public static JSONArray eventListToJson(ArrayList<Event> arr) {
-        JSONArray jsonArray = new JSONArray();
-
-        for (Event t : arr) {
-            jsonArray.put(t.toJson());
-        }
-
-        return jsonArray;
     }
 
 //    public JSONArray attendeesToJson() {

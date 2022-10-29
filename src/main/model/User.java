@@ -85,6 +85,17 @@ public class User implements Writable {
         return s;
     }
 
+    // EFFECTS: returns events in the eventsList as a JSON array
+    public static JSONArray userListToJson(ArrayList<User> arr) {
+        JSONArray jsonArray = new JSONArray();
+
+        for (User t : arr) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("Shows List", Event.eventListToJson(myShows));
@@ -103,15 +114,7 @@ public class User implements Writable {
 //        return jsonArray;
 //    }
 
-    public static JSONArray userListToJson(ArrayList<User> arr) {
-        JSONArray jsonArray = new JSONArray();
 
-        for (User t : arr) {
-            jsonArray.put(t.toJson());
-        }
-
-        return jsonArray;
-    }
 
 
 

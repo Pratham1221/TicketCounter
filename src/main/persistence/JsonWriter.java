@@ -28,7 +28,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of TicketCounter to file
     public void write() {
         JSONObject json = new JSONObject();
         json.put("Events List", Event.eventListToJson(Event.getEventList()));

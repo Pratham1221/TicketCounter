@@ -12,7 +12,7 @@ import model.Organiser;
 import model.User;
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads TicketCounter from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads TicketCounter from file and returns it;
     // throws IOException if an error occurs reading data from file
     public void read() throws IOException {
         String jsonData = readFile(source);
@@ -42,7 +42,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses TicketCounter from JSON object and returns it
     private void parseList(JSONObject jsonObject) {
         JSONArray e = jsonObject.getJSONArray("Events List");
         JSONArray o = jsonObject.getJSONArray("Organisers List");
@@ -65,6 +65,7 @@ public class JsonReader {
 
     }
 
+    //Effects: Gets users as json objects and puts them in the usersList
     private void addUser(JSONObject jsonObject) {
         JSONArray myShows = jsonObject.getJSONArray("Shows List");
         String userName = jsonObject.getString("User Name");
@@ -77,6 +78,7 @@ public class JsonReader {
         }
     }
 
+    //Effects: Gets users shows as json objects and puts them in the users myShows
     private void addShows(User u, JSONObject jsonObject) {
         String eventName = jsonObject.getString("EventName");
         for (int i = 0; i < Event.getEventList().size(); i++) {
@@ -86,6 +88,7 @@ public class JsonReader {
         }
     }
 
+    //Effects: Gets organisers as json objects and puts them in the organisersList
     private void addOrganiser(JSONObject jsonObject) {
         String userName = jsonObject.getString("User Name");
         String name = jsonObject.getString("name");
@@ -103,7 +106,7 @@ public class JsonReader {
         }
     }
 
-    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    //Effects: Gets events as json objects and puts them in the eventList
     private void addEvent(JSONObject jsonObject) {
         String eventName = jsonObject.getString("EventName");
         String date = jsonObject.getString("date");

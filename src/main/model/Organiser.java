@@ -95,7 +95,16 @@ public class Organiser implements Writable {
         return myShows;
     }
 
+    // EFFECTS: returns organisers in the organisersList as a JSON array
+    public static JSONArray organisersListToJson(ArrayList<Organiser> arr) {
+        JSONArray jsonArray = new JSONArray();
 
+        for (Organiser t : arr) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -114,15 +123,6 @@ public class Organiser implements Writable {
 //        return jsonArray;
 //    }
 
-    public static JSONArray organisersListToJson(ArrayList<Organiser> arr) {
-        JSONArray jsonArray = new JSONArray();
-
-        for (Organiser t : arr) {
-            jsonArray.put(t.toJson());
-        }
-
-        return jsonArray;
-    }
 
 
 

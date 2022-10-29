@@ -1,0 +1,22 @@
+{
+    "Events List": [{
+        "date": "21-12-2022",
+        "Organiser": {
+            "User Name": "pratham1221",
+            "name": "pratham"
+        },
+        "Description": "it is a hackathon",
+        "Tickets": 20,
+        "EventName": "hello hacks",
+        "time": "3"
+    }],
+    "Organisers List": [{
+        "User Name": "pratham1221",
+        "name": "pratham"
+    }],
+    "Users List": [{
+        "Shows List": [],
+        "User Name": "pratha12",
+        "name": "pratham"
+    }]
+}

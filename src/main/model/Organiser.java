@@ -20,9 +20,6 @@ public class Organiser implements Writable {
         return organisersList;
     }
 
-    public static void setOrganisersList(ArrayList<Organiser> organisersList) {
-        Organiser.organisersList = organisersList;
-    }
 
     //Effects : Instantiates an organiser object with name and username
     public Organiser(String name, String userName) {
@@ -98,9 +95,7 @@ public class Organiser implements Writable {
         return myShows;
     }
 
-    public void setMyShows(ArrayList<Event> myShows) {
-        this.myShows = myShows;
-    }
+
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

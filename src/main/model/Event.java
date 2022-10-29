@@ -168,9 +168,7 @@ public class Event implements Writable {
         return time;
     }
 
-    public static void setEventList(ArrayList<Event> eventList) {
-        Event.eventList = eventList;
-    }
+
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

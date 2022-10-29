@@ -78,7 +78,7 @@ public class JsonReader {
     }
 
     private void addShows(User u, JSONObject jsonObject) {
-        String eventName = jsonObject.getString("eventName");
+        String eventName = jsonObject.getString("EventName");
         for (int i = 0; i < Event.getEventList().size(); i++) {
             if (Event.getEventList().get(i).getEventName().equals(eventName)) {
                 u.getMyShows().add(Event.getEventList().get(i));
@@ -91,7 +91,6 @@ public class JsonReader {
         String name = jsonObject.getString("name");
         if (Organiser.getOrganisersList().size() == 0) {
             new Organiser(name, userName);
-            //organiserList.add(org);
         }
         int count = 0;
         for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
@@ -101,9 +100,7 @@ public class JsonReader {
         }
         if (count == 0) {
             new Organiser(name, userName);
-            //organiserList.add(org);
         }
-
     }
 
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
@@ -119,7 +116,6 @@ public class JsonReader {
         Organiser org = null;
         if (Organiser.getOrganisersList().size() == 0) {
             org = new Organiser(name, userName);
-            //organiserList.add(org);
         }
         for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
             if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)) {
@@ -129,40 +125,9 @@ public class JsonReader {
         }
         if (org == null) {
             org = new Organiser(name, userName);
-            //organiserList.add(org);
         }
         Event e = new Event(org, eventName, tickets, description, date, time);
-        //eventsList.add(e);
         org.getMyShows().add(e);
-//        ArrayList<Event> myShows = org.getMyShows();
-//        myShows.add(e);
-//        org.setMyShows(myShows);
     }
 
-//    private ArrayList<Event> addMyShows(ArrayList<Event> arr, JSONObject jsonObject) {
-//        String eventName = jsonObject.getString("EventName");
-//        String date = jsonObject.getString("date");
-//        int tickets = jsonObject.getInt("Tickets");
-//        String time = jsonObject.getString("time");
-//        String description = jsonObject.getString("Description");
-//
-//    }
-
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
-//    private void addThingies(WorkRoom wr, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("thingies");
-//        for (Object json : jsonArray) {
-//            JSONObject nextThingy = (JSONObject) json;
-//            addThingy(wr, nextThingy);
-//        }
-//    }
-
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-//    private void addThingy(WorkRoom wr, JSONObject jsonObject) {
-//        String name = jsonObject.getString("name");
-//        Category category = Category.valueOf(jsonObject.getString("category"));
-//        Thingy thingy = new Thingy(name, category);
-//        wr.addThingy(thingy);
-//    }
 }

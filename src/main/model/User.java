@@ -87,7 +87,7 @@ public class User implements Writable {
 
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Shows List", myShows);
+        json.put("Shows List", Event.eventListToJson(myShows));
         json.put("name", name);
         json.put("User Name", userName);
         //json.put("messages", messages);

@@ -3,12 +3,14 @@ package persistence;
 import model.Event;
 import model.Organiser;
 import model.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
 
 import java.io.IOException;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class JsonReaderTest {
 
@@ -28,9 +30,9 @@ class JsonReaderTest {
         JsonReader reader = new JsonReader("./data/testReaderEmptyTicketCounter.json");
         try {
             reader.read();
-            assertEquals(0, Event.getEventList().size());
-            assertEquals(0, Organiser.getOrganisersList().size());
-            assertEquals(0, User.getUsersList().size());
+            Assertions.assertEquals(0, Event.getEventList().size());
+            Assertions.assertEquals(0, Organiser.getOrganisersList().size());
+            Assertions.assertEquals(0, User.getUsersList().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
@@ -48,7 +50,6 @@ class JsonReaderTest {
 //                    "21-12-2022","3");
 //            User u = new User("pratham","pratha12");
 //            u.buyTicket(e);
-            //u.buyTicket(e);
 //            JsonWriter writer = new JsonWriter("./data/testReaderGeneralTicketCounter.json");
 //            writer.open();
 //            writer.write();
@@ -118,6 +119,9 @@ class JsonReaderTest {
             assertEquals("pratham1221", Organiser.getOrganisersList().get(0).getUserName());
             assertEquals("pratham", Organiser.getOrganisersList().get(1).getName());
             assertEquals("pratha12", Organiser.getOrganisersList().get(1).getUserName());
+            assertEquals(2,Organiser.getOrganisersList().size());
+//            assertEquals("pratham", Organiser.getOrganisersList().get(2).getName());
+//            assertEquals("pratham1221", Organiser.getOrganisersList().get(2).getUserName());
 
         } catch (IOException e) {
             fail("Couldn't read from file");

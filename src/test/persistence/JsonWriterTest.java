@@ -4,11 +4,15 @@ package persistence;
 import model.Event;
 import model.Organiser;
 import model.User;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class JsonWriterTest {
 
@@ -35,9 +39,9 @@ class JsonWriterTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyTicketCounter.json");
             reader.read();
-            assertEquals(0,Event.getEventList().size());
-            assertEquals(0, Organiser.getOrganisersList().size());
-            assertEquals(0, User.getUsersList().size());
+            Assertions.assertEquals(0, Event.getEventList().size());
+            Assertions.assertEquals(0, Organiser.getOrganisersList().size());
+            Assertions.assertEquals(0, User.getUsersList().size());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
         }

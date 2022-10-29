@@ -38,6 +38,7 @@ class EventTest {
         Event.getEventList().remove(e1);
     }
 
+
     @Test
     void testDisplay() {
         assertEquals(String.format("Event name: Hello Hacks          Wed Dec 21%n"), e1.display());
@@ -56,11 +57,20 @@ class EventTest {
     }
 
     @Test
+    void testGetOrganiser() {
+        String username = e1.getOrganiser().getUserName();
+        assertEquals("pratham1221",username);
+        Event.getEventList().remove(e1);
+    }
+
+
+    @Test
     void testShowEvents() {
         assertEquals("1 " + Event.getEventList().get(0).display() + "\n", Event.showEvent());
         Event.getEventList().remove(e1);
         assertEquals("There are no events\n", Event.showEvent());
     }
+
 
 
 

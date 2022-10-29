@@ -36,14 +36,13 @@
     "Users List": [{
         "Shows List": [{
             "date": "21-12-2022",
-            "organiser": {
-                "name": "pratham",
-                "userName": "pratham1221",
-                "myShows": []
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
             },
-            "tickets": 19,
-            "description": "it is a hackathon",
-            "eventName": "hello hacks",
+            "Description": "it is a hackathon",
+            "Tickets": 19,
+            "EventName": "hello hacks",
             "time": "3"
         }],
         "User Name": "pratha12",

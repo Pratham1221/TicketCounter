@@ -14,11 +14,12 @@ Language: Java
 - Has features like add, modify and cancel events. And also displays all current events.
 - Can print out tickets with the credentials of the user.
 - Users and Organisers have different accounts and can sign in at any time to view their current events.
-- It informs the user if the organiser make any changes to the show. (For Example : modify/cancel show)
 
 ## User Stories
 
 - As a user, I want to be able to add my event on the software.
-- As a user, I want to be able to cancel my show and inform the ticket holders.
+- As a user, I want to be able to cancel my show.
 - As a user, I want to be able to recieve a ticket of the show with my credentials.
 - As a user, I want to be able to see the number of tickets available for a particular show.
+- As a user, I want to be able to load my previous data.
+- As a user, I want to be able to save my data.

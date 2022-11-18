@@ -7,15 +7,19 @@ import org.json.JSONArray;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 // TicketCounter Application
-public class TicketCounter {
+public class TicketCounter implements ActionListener {
     private static final String JSON_STORE = "./data/ticketCounter.json";
-//    private ArrayList<User> usersList = new ArrayList<User>();
+    //    private ArrayList<User> usersList = new ArrayList<User>();
 //    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>()
     private Organiser currentOrganiser;
     private User currentUser;
@@ -29,7 +33,208 @@ public class TicketCounter {
     public TicketCounter() throws Exception {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        runApp();
+        loadTicketCounter();
+        this.firstFrame();
+        //runApp();
+    }
+
+    public void firstFrame() {
+        JFrame frame = new JFrame();
+        frame.setTitle("TicketCounter");
+        frame.setSize(800, 800);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        ImageIcon logo = new ImageIcon("./data/logo.jpeg");
+        frame.setIconImage(logo.getImage());
+        frame.getContentPane().setBackground(new Color(211, 211, 211));
+        JLabel label = new JLabel("Welcome to Ticket Counter!");
+        label.setBounds(180, 40, 500, 200);
+        label.setFont(new Font("MV Boli", Font.BOLD, 30));
+//        label.setVerticalAlignment(JLabel.TOP);
+//        label.setHorizontalAlignment(JLabel.CENTER);
+        JPanel login1 = createOrganiserLoginPanel();
+        JPanel login2 = createUserLoginPanel();
+        frame.add(login1);
+        frame.add(login2);
+        frame.add(label);
+        frame.setVisible(true);
+        //this.pack();
+    }
+
+    public JPanel createOrganiserLoginPanel() {
+        JPanel login = new JPanel();
+        JTextField name = new JTextField();
+        name.setBounds(20, 70, 130, 20);
+        JTextField username = new JTextField();
+        username.setBounds(20, 140, 130, 20);
+        JLabel userName = new JLabel("Username");
+        userName.setForeground(new Color(255, 255, 255));
+        userName.setBounds(20, 120, 130, 20);
+        JLabel heading = new JLabel("Name");
+        heading.setForeground(new Color(255, 255, 255));
+        heading.setBounds(20, 50, 130, 20);
+        JLabel label = new JLabel("Organiser Account");
+        label.setForeground(new Color(255, 255, 255));
+        label.setBounds(70, 10, 130, 40);
+        login.setBounds(50, 400, 260, 230);
+        JButton loginButton = new JButton("Login");
+        JButton createButton = new JButton("Create Account");
+        loginButton.setBounds(20, 200, 80, 20);
+        createButton.setBounds(120, 200, 125, 20);
+        loginButton.addActionListener(e -> loginInOrganiser(name.getText(), username.getText()));
+        createButton.addActionListener(e -> createAccountOrganiser(name.getText(), username.getText()));
+        login.add(userName);
+        login.add(heading);
+        login.add(username);
+        login.add(createButton);
+        login.add(loginButton);
+        login.add(name);
+        login.add(label);
+        login.setBackground(Color.darkGray);
+        //username.setLayout(null);
+        login.setLayout(null);
+        return login;
+    }
+
+    public JPanel createUserLoginPanel() {
+        JPanel login = new JPanel();
+        login.setBounds(50, 400, 260, 230);
+        JTextField name = new JTextField();
+        name.setBounds(20, 70, 130, 20);
+        JTextField username = new JTextField();
+        username.setBounds(20, 140, 130, 20);
+        JLabel userName = new JLabel("Username");
+        userName.setForeground(new Color(255, 255, 255));
+        userName.setBounds(20, 120, 130, 20);
+        JLabel heading = new JLabel("Name");
+        heading.setForeground(new Color(255, 255, 255));
+        heading.setBounds(20, 50, 130, 20);
+        JLabel label = new JLabel("User Account");
+        label.setForeground(new Color(255, 255, 255));
+        label.setBounds(90, 10, 130, 40);
+        JButton loginButton = new JButton("Login");
+        JButton createButton = new JButton("Create Account");
+        loginButton.setBounds(20, 200, 80, 20);
+        createButton.setBounds(120, 200, 125, 20);
+        loginButton.addActionListener(e -> loginInUser(name.getText(), username.getText()));
+        createButton.addActionListener(e -> createAccountUser(name.getText(), username.getText()));
+        login.add(userName);
+        login.add(heading);
+        login.add(username);
+        login.add(createButton);
+        login.add(loginButton);
+        login.add(name);
+        login.add(label);
+        login.setBackground(Color.darkGray);
+        login.setBounds(450, 400, 260, 230);
+        login.setLayout(null);
+        return login;
+    }
+
+    public void loginInUser(String name, String userName) {
+        int count = 0;
+        if (User.getUsersList().size() == 0) {
+            //System.out.println("No username exist, please try again!");
+            JOptionPane.showMessageDialog(null, "No such user exists. Try again!",
+                    "Login fail", JOptionPane.PLAIN_MESSAGE);
+            createUserLoginPanel();
+        } else {
+            for (int i = 0; i < User.getUsersList().size(); i++) {
+                if (User.getUsersList().get(i).getUserName().equals(userName)
+                        && User.getUsersList().get(i).getName().equals(name)) {
+                    System.out.println("welcome");
+                    currentUser = User.getUsersList().get(i);
+                    count++;
+                }
+            }
+            if (count == 0) {
+                JOptionPane.showMessageDialog(null, "No such user exists. Try again!",
+                        "Login fail", JOptionPane.PLAIN_MESSAGE);
+                createUserLoginPanel();
+            }
+        }
+    }
+
+    public boolean containsInOrganiser(String userName) {
+        if (Organiser.getOrganisersList().size() == 0) {
+            return false;
+        } else {
+            for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+                if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean containsInUser(String userName) {
+        if (User.getUsersList().size() == 0) {
+            return false;
+        } else {
+            for (int i = 0; i < User.getUsersList().size(); i++) {
+                if (User.getUsersList().get(i).getUserName().equals(userName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void loginInOrganiser(String name, String userName) {
+        int count = 0;
+        if (Organiser.getOrganisersList().size() == 0) {
+            //System.out.println("No username exist, please try again!");
+            JOptionPane.showMessageDialog(null, "No such user exists. Try again!",
+                    "Login fail", JOptionPane.PLAIN_MESSAGE);
+            createOrganiserLoginPanel();
+        } else {
+            for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
+                if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)
+                        && Organiser.getOrganisersList().get(i).getName().equals(name)) {
+                    System.out.println("welcome");
+                    currentOrganiser = Organiser.getOrganisersList().get(i);
+                    count++;
+                }
+            }
+            if (count == 0) {
+                JOptionPane.showMessageDialog(null, "No such user exists. Try again!",
+                        "Login fail", JOptionPane.PLAIN_MESSAGE);
+                createOrganiserLoginPanel();
+            }
+        }
+    }
+
+    public void createAccountOrganiser(String name, String username) {
+        if (containsInOrganiser(username)) {
+            JOptionPane.showMessageDialog(null, "User already exists!",
+                    "Login fail", JOptionPane.PLAIN_MESSAGE);
+            createOrganiserLoginPanel();
+        } else {
+            Organiser o = new Organiser(name, username);
+            currentOrganiser = o;
+            System.out.println("welcome");
+
+        }
+    }
+
+
+
+    public void createAccountUser(String name, String username) {
+        if (containsInUser(username)) {
+            JOptionPane.showMessageDialog(null, "User already exists!",
+                    "Login fail", JOptionPane.PLAIN_MESSAGE);
+            createUserLoginPanel();
+        } else {
+            User u = new User(name, username);
+            currentUser = u;
+            System.out.println("welcome");
+        }
+    }
+
+    public void organiserFrame() {
+
     }
 
     //Effects: Runs the Application
@@ -357,19 +562,6 @@ public class TicketCounter {
 
     //Effects: Displays all the events in the made
     public void showEvent() throws Exception {
-//        if (Event.getEventList().size() == 0) {
-//            System.out.println("There are no events");
-//            System.out.printf("(2) Go Back%n");
-//        } else {
-//            int[] arr = new int[Event.getEventList().size()];
-//            for (int i = 0; i < arr.length; i++) {
-//                arr[i] = i + 1;
-//            }
-//            for (int i = 0; i < Event.getEventList().size(); i++) {
-//                System.out.println(arr[i] + " " + Event.getEventList().get(i).display());
-//            }
-//            System.out.printf("(1) Choose a show%n" + "(2) Go Back%n");
-//        }
         System.out.println(Event.showEvent());
         if (Event.getEventList().size() == 0) {
             System.out.printf("(2) Go Back%n");
@@ -533,6 +725,13 @@ public class TicketCounter {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+
+
     }
 
 //    public JSONArray organisersListToJson() {

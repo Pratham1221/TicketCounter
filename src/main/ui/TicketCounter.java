@@ -51,8 +51,7 @@ public class TicketCounter implements ActionListener {
         JLabel label = new JLabel("Welcome to Ticket Counter!");
         label.setBounds(180, 40, 500, 200);
         label.setFont(new Font("MV Boli", Font.BOLD, 30));
-//        label.setVerticalAlignment(JLabel.TOP);
-//        label.setHorizontalAlignment(JLabel.CENTER);
+
         JPanel login1 = createOrganiserLoginPanel();
         JPanel login2 = createUserLoginPanel();
         frame.add(login1);

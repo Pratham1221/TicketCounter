@@ -79,6 +79,7 @@ public class TicketCounter implements ActionListener {
     }
 
     //Effects : Creates the login screen
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void firstFrame() {
         frame.dispose();
         frame = new JFrame();

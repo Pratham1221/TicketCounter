@@ -21,6 +21,17 @@
             "Tickets": 20,
             "EventName": "hello",
             "time": "4pm"
+        },
+        {
+            "date": "12-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is a begineer hackathon",
+            "Tickets": 20,
+            "EventName": "Hello camp",
+            "time": "6pm"
         }
     ],
     "Organisers List": [

@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,8 +20,6 @@ import java.util.Scanner;
 // TicketCounter Application
 public class TicketCounter implements ActionListener {
     private static final String JSON_STORE = "./data/ticketCounter.json";
-    //    private ArrayList<User> usersList = new ArrayList<User>();
-//    private ArrayList<Organiser> organisersList = new ArrayList<Organiser>()
     private Organiser currentOrganiser;
     private User currentUser;
     private static int checkUser;
@@ -41,12 +41,13 @@ public class TicketCounter implements ActionListener {
     JLabel label2;
     JLabel label3;
     JLabel label4;
+    int count = 0;
 
-    //Effects: Starts the runApp method
+    //Effects: Starts the  first frame
     public TicketCounter() throws Exception {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        loadTicketCounter();
+        //loadTicketCounter();
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -62,28 +63,48 @@ public class TicketCounter implements ActionListener {
         //runApp();
     }
 
+    //Effects : Creates the first Logo Screen
     private void startingWindow() {
         frame = new JFrame();
         setFrame();
         ImageIcon logo = new ImageIcon("./data/ticket-counter-logo.png");
         Image image = logo.getImage();
-        Image modifiedimage = image.getScaledInstance(800,800,Image.SCALE_SMOOTH);
+        Image modifiedimage = image.getScaledInstance(800, 800, Image.SCALE_SMOOTH);
         logo = new ImageIcon(modifiedimage);
         JLabel label1 = new JLabel();
-        label1.setBounds(0,0,800,800);
+        label1.setBounds(0, 0, 800, 800);
         label1.setIcon(logo);
         frame.add(label1);
         frame.setVisible(true);
     }
 
-
+    //Effects : Creates the login screen
     public void firstFrame() {
+        frame.dispose();
         frame = new JFrame();
         frame.setTitle("TicketCounter");
         frame.setSize(800, 800);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        if (count == 0) {
+            int load = JOptionPane.showConfirmDialog(null, "Do you want to load prevoius data",
+                    "loading",JOptionPane.YES_NO_OPTION);
+            if (load == 0) {
+                loadTicketCounter();
+            }
+            count++;
+        }
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                int result = JOptionPane.showConfirmDialog(frame,
+                        "Do you want to save your progress ?", "saving",
+                        JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    saveTicketCounter();
+                }
+            }
+        });
         ImageIcon logo = new ImageIcon("./data/logo.jpeg");
         frame.setIconImage(logo.getImage());
         frame.getContentPane().setBackground(new Color(211, 211, 211));
@@ -100,6 +121,7 @@ public class TicketCounter implements ActionListener {
         //this.pack();
     }
 
+    //Effects : Reinitialize the global frame
     public void setFrame() {
         frame.setTitle("TicketCounter");
         frame.setSize(800, 800);
@@ -111,6 +133,7 @@ public class TicketCounter implements ActionListener {
         frame.getContentPane().setBackground(new Color(211, 211, 211));
     }
 
+    //Effects : Creates a panel and sub text fields for organiser login
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public JPanel createOrganiserLoginPanel() {
         JPanel login = new JPanel();
@@ -147,6 +170,7 @@ public class TicketCounter implements ActionListener {
         return login;
     }
 
+    //Effects : Creates a panel and sub text fields for user login
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public JPanel createUserLoginPanel() {
         JPanel login = new JPanel();
@@ -183,6 +207,7 @@ public class TicketCounter implements ActionListener {
         return login;
     }
 
+    //Effects : logs in the user if it is already in the system
     public void loginInUser(String name, String userName) {
         int count = 0;
         if (User.getUsersList().size() == 0) {
@@ -208,6 +233,7 @@ public class TicketCounter implements ActionListener {
         }
     }
 
+    //Effects: Checks if the organiser is already in the system
     public boolean containsInOrganiser(String userName) {
         if (Organiser.getOrganisersList().size() == 0) {
             return false;
@@ -221,6 +247,7 @@ public class TicketCounter implements ActionListener {
         return false;
     }
 
+    //Effects: Checks if the user is already in the system
     public boolean containsInUser(String userName) {
         if (User.getUsersList().size() == 0) {
             return false;
@@ -234,6 +261,7 @@ public class TicketCounter implements ActionListener {
         return false;
     }
 
+    //Effects: logs in the organiser if it is already in the system
     public void loginInOrganiser(String name, String userName) {
         int count = 0;
         if (Organiser.getOrganisersList().size() == 0) {
@@ -259,6 +287,7 @@ public class TicketCounter implements ActionListener {
         }
     }
 
+    //Effects: Creates a new Organiser account if it does not exist already
     public void createAccountOrganiser(String name, String username) {
         if (containsInOrganiser(username)) {
             JOptionPane.showMessageDialog(null, "User already exists!",
@@ -272,7 +301,7 @@ public class TicketCounter implements ActionListener {
         }
     }
 
-
+    //Effects: Creates a new user account if it does not exist already
     public void createAccountUser(String name, String username) {
         if (containsInUser(username)) {
             JOptionPane.showMessageDialog(null, "User already exists!",
@@ -286,13 +315,14 @@ public class TicketCounter implements ActionListener {
         }
     }
 
+    //Effects: creates the organiser frame
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void organiserFrame() {
         frame.dispose();
         frame = new JFrame();
         setFrame();
         JButton logout = new JButton("Logout");
-        logout.setBounds(600,70,100,30);
+        logout.setBounds(600, 70, 100, 30);
         logout.addActionListener(e -> firstFrame());
         label = new JLabel("User: " + Character.toUpperCase(currentOrganiser.getName().charAt(0))
                 + currentOrganiser.getName().substring(1, currentOrganiser.getName().length()));
@@ -339,6 +369,7 @@ public class TicketCounter implements ActionListener {
         frame.setVisible(true);
     }
 
+    //Effects: Creates the user frame
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void userFrame() {
         frame.dispose();
@@ -348,8 +379,11 @@ public class TicketCounter implements ActionListener {
                 + currentUser.getName().substring(1, currentUser.getName().length()));
         label.setBounds(10, 0, 500, 50);
         label.setFont(new Font("MV Boli", Font.BOLD, 30));
+        JLabel info = new JLabel();
+        info.setFont(new Font("MV Boli", Font.BOLD, 20));
+        info.setBounds(10, 600, 400, 40);
         JButton logout = new JButton("Logout");
-        logout.setBounds(600,70,100,30);
+        logout.setBounds(600, 70, 100, 30);
         logout.addActionListener(e -> firstFrame());
         JLabel label2 = new JLabel();
         label2.setBounds(10, 70, 500, 50);
@@ -388,7 +422,19 @@ public class TicketCounter implements ActionListener {
                 });
             }
         });
-
+        addShow.addActionListener(e1 -> {
+            if (!list.isSelectionEmpty()) {
+                try {
+                    currentUser.buyTicket(list.getSelectedValue());
+                    info.setText("Thanks for buying the ticket!");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                info.setText("Please select an event!");
+            }
+            //frame.add(label4);
+        });
         splitPane.setBounds(10, 140, 600, 300);
         splitPane.setLeftComponent(new JScrollPane(list));
         panel.add(label3);
@@ -400,6 +446,7 @@ public class TicketCounter implements ActionListener {
 //        addShow.setBounds(400, 500, 400, 100);
 //        addShow.addActionListener(this);
         frame.add(splitPane);
+        frame.add(info);
         frame.add(logout);
         frame.add(myShows);
         frame.add(addShow);
@@ -408,6 +455,7 @@ public class TicketCounter implements ActionListener {
         frame.setVisible(true);
     }
 
+    //Effects: Creates a new frame to show all the events of the current user
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void userShows() {
         frame.dispose();
@@ -482,6 +530,7 @@ public class TicketCounter implements ActionListener {
         frame.setVisible(true);
     }
 
+    //Effects: Creates a new frame to show all the events of the current organiser
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void organiserShows() {
         frame.dispose();
@@ -536,34 +585,15 @@ public class TicketCounter implements ActionListener {
 
     }
 
-    public void showsList() {
-        textarea = new JTextArea(5, 20);
-        textarea.setBackground(Color.WHITE);
-        textarea.setForeground(new Color(0, 0, 0));
-
-        //textarea.setBounds(10, 140, 600, 300);
-        textarea.setFont(new Font("Arial", Font.ITALIC, 15));
-        scrollPane1 = new JScrollPane(textarea);
-
-
-        for (Event event : Event.getEventList()) {
-            textarea.append(event.toString() + "\n");
-        }
-        //scrollPane1.setBounds(10, 140, 600, 300);
-//        scrollPane1.setBorder(BorderFactory.createEmptyBorder());
-//        scrollPane1.setViewportBorder(null);
-
-        textarea.setEditable(false);
-        frame.add(scrollPane1);
-        frame.setVisible(true);
-
-    }
-
+    //Effects: Creates a new frame for the organiser to add new events
     @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void addShow() {
         frame.dispose();
         frame = new JFrame();
         setFrame();
+        JLabel info = new JLabel();
+        info.setFont(new Font("MV Boli", Font.BOLD, 20));
+        info.setBounds(10, 600, 400, 40);
         JPanel addEvent = new JPanel();
         label2 = new JLabel("Add Event: ");
         label2.setBounds(10, 70, 500, 50);
@@ -600,6 +630,7 @@ public class TicketCounter implements ActionListener {
         add.addActionListener(e -> {
             currentOrganiser.createEvent(event.getText(), Integer.parseInt(tickets.getText()),
                     desc.getText(), date.getText(), time.getText());
+            info.setText("Succesfully added the event!");
         });
         JButton back = new JButton("Go Back");
         back.setBounds(600, 250, 100, 50);
@@ -614,6 +645,7 @@ public class TicketCounter implements ActionListener {
         addEvent.add(eventName);
         addEvent.add(tickets);
         addEvent.add(event);
+        frame.add(info);
         frame.add(add);
         frame.add(back);
         frame.add(label2);
@@ -1113,6 +1145,7 @@ public class TicketCounter implements ActionListener {
         }
     }
 
+    //Effects: Checks button clicks and choose the desired outcome
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == myShows) {

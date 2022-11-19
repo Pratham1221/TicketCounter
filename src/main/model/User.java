@@ -49,10 +49,10 @@ public class User implements Writable {
             e.setTickets(e.getTickets() - 1);
             e.createTicket(this.name);
             //e.getOrganiser().getMessages().add(getName() + "purchased a ticket");
-//            return "You have successfully bought a ticket for " + e.getEventName()
-//                    + " \nYour ticket has been generated! "
-//                    + "Please find it in " + System.getProperty("user.dir") + "\\" + e.getEventName() + ".pdf";
-            return "Thanks for buying";
+            return "You have successfully bought a ticket for " + e.getEventName()
+                    + " \nYour ticket has been generated! "
+                    + "Please find it in " + System.getProperty("user.dir") + "\\" + e.getEventName() + ".pdf";
+            //return "Thanks for buying";
         }
     }
 

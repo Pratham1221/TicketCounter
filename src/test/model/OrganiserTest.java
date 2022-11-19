@@ -46,7 +46,7 @@ public class OrganiserTest {
         assertEquals("There are no events\n", o1.allEvents());
         o1.createEvent("Hello Hacks",21,
                 "It is hackathon","21-12-2022","7:30");
-        assertEquals("1 " + o1.getMyShows().get(0).display() + "\n", o1.allEvents());
+        assertEquals("1 " + o1.getMyShows().get(0).toString() + "\n", o1.allEvents());
     }
 
     @Test

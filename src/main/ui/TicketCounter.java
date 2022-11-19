@@ -3,7 +3,6 @@ package ui;
 import model.Event;
 import model.Organiser;
 import model.User;
-import org.json.JSONArray;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -11,9 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 // TicketCounter Application
@@ -28,18 +27,58 @@ public class TicketCounter implements ActionListener {
     boolean quit = false;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    JFrame frame;
+    JTextArea textarea;
+    JScrollPane scrollPane1;
+    JButton myShows;
+    JButton addShow;
+    JButton openPdf;
+    JList<Event> list;
+    DefaultListModel<Event> model;
+    JPanel panel;
+    JSplitPane splitPane;
+    JLabel label;
+    JLabel label2;
+    JLabel label3;
+    JLabel label4;
 
     //Effects: Starts the runApp method
     public TicketCounter() throws Exception {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         loadTicketCounter();
-        this.firstFrame();
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        firstFrame();
+                    }
+                }, 2000
+        );
+
+        startingWindow();
+
         //runApp();
     }
 
+    private void startingWindow() {
+        frame = new JFrame();
+        setFrame();
+        ImageIcon logo = new ImageIcon("./data/ticket-counter-logo.png");
+        Image image = logo.getImage();
+        Image modifiedimage = image.getScaledInstance(800,800,Image.SCALE_SMOOTH);
+        logo = new ImageIcon(modifiedimage);
+        JLabel label1 = new JLabel();
+        label1.setBounds(0,0,800,800);
+        label1.setIcon(logo);
+        frame.add(label1);
+        frame.setVisible(true);
+    }
+
+
     public void firstFrame() {
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setTitle("TicketCounter");
         frame.setSize(800, 800);
         frame.setResizable(false);
@@ -61,6 +100,18 @@ public class TicketCounter implements ActionListener {
         //this.pack();
     }
 
+    public void setFrame() {
+        frame.setTitle("TicketCounter");
+        frame.setSize(800, 800);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLayout(null);
+        ImageIcon logo = new ImageIcon("./data/logo.jpeg");
+        frame.setIconImage(logo.getImage());
+        frame.getContentPane().setBackground(new Color(211, 211, 211));
+    }
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public JPanel createOrganiserLoginPanel() {
         JPanel login = new JPanel();
         JTextField name = new JTextField();
@@ -96,6 +147,7 @@ public class TicketCounter implements ActionListener {
         return login;
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public JPanel createUserLoginPanel() {
         JPanel login = new JPanel();
         login.setBounds(50, 400, 260, 230);
@@ -145,6 +197,7 @@ public class TicketCounter implements ActionListener {
                     System.out.println("welcome");
                     currentUser = User.getUsersList().get(i);
                     count++;
+                    userFrame();
                 }
             }
             if (count == 0) {
@@ -195,6 +248,7 @@ public class TicketCounter implements ActionListener {
                     System.out.println("welcome");
                     currentOrganiser = Organiser.getOrganisersList().get(i);
                     count++;
+                    organiserFrame();
                 }
             }
             if (count == 0) {
@@ -214,10 +268,9 @@ public class TicketCounter implements ActionListener {
             Organiser o = new Organiser(name, username);
             currentOrganiser = o;
             System.out.println("welcome");
-
+            organiserFrame();
         }
     }
-
 
 
     public void createAccountUser(String name, String username) {
@@ -229,11 +282,345 @@ public class TicketCounter implements ActionListener {
             User u = new User(name, username);
             currentUser = u;
             System.out.println("welcome");
+            userFrame();
         }
     }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
     public void organiserFrame() {
+        frame.dispose();
+        frame = new JFrame();
+        setFrame();
+        JButton logout = new JButton("Logout");
+        logout.setBounds(600,70,100,30);
+        logout.addActionListener(e -> firstFrame());
+        label = new JLabel("User: " + Character.toUpperCase(currentOrganiser.getName().charAt(0))
+                + currentOrganiser.getName().substring(1, currentOrganiser.getName().length()));
+        label.setBounds(10, 0, 500, 50);
+        label.setFont(new Font("MV Boli", Font.BOLD, 30));
+        label2 = new JLabel();
+        label2.setBounds(10, 70, 500, 50);
+        label2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        if (Event.getEventList().size() == 0) {
+            label2.setText("There are no shows");
+        } else {
+            label2.setText("Shows List :");
+        }
+        label3 = new JLabel();
+        list = new JList<Event>();
+        model = new DefaultListModel<>();
+        splitPane = new JSplitPane();
+        panel = new JPanel();
+        list.setModel(model);
+        for (int i = 0; i < Event.getEventList().size(); i++) {
+            model.addElement(Event.getEventList().get(i));
+        }
+        list.getSelectionModel().addListSelectionListener(e -> {
+            Event p = list.getSelectedValue();
+            label3.setText("<html>" + p.displayDetailed().replaceAll("<", "&lt;").replaceAll(">",
+                    "&gt;").replaceAll("\n", "<br/>") + "</html>");
+        });
+        splitPane.setBounds(10, 140, 600, 300);
+        splitPane.setLeftComponent(new JScrollPane(list));
+        panel.add(label3);
+        splitPane.setRightComponent(panel);
+        myShows = new JButton("MyShows");
+        myShows.setBounds(0, 500, 400, 100);
+        myShows.addActionListener(this);
+        addShow = new JButton("Create Event");
+        addShow.setBounds(400, 500, 400, 100);
+        addShow.addActionListener(this);
+        frame.add(myShows);
+        frame.add(logout);
+        frame.add(addShow);
+        frame.add(splitPane);
+        frame.add(label2);
+        frame.add(label);
+        frame.setVisible(true);
+    }
 
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public void userFrame() {
+        frame.dispose();
+        frame = new JFrame();
+        setFrame();
+        JLabel label = new JLabel("User: " + Character.toUpperCase(currentUser.getName().charAt(0))
+                + currentUser.getName().substring(1, currentUser.getName().length()));
+        label.setBounds(10, 0, 500, 50);
+        label.setFont(new Font("MV Boli", Font.BOLD, 30));
+        JButton logout = new JButton("Logout");
+        logout.setBounds(600,70,100,30);
+        logout.addActionListener(e -> firstFrame());
+        JLabel label2 = new JLabel();
+        label2.setBounds(10, 70, 500, 50);
+        label2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        label4 = new JLabel();
+        label4.setFont(new Font("MV Boli", Font.BOLD, 10));
+        label4.setBounds(10, 600, 600, 50);
+        if (Event.getEventList().size() == 0) {
+            label2.setText("There are no shows");
+        } else {
+            label2.setText("Shows List :");
+        }
+        addShow = new JButton("Buy Ticket");
+        addShow.setBounds(400, 500, 400, 100);
+        label3 = new JLabel();
+        list = new JList<Event>();
+        model = new DefaultListModel<>();
+        splitPane = new JSplitPane();
+        panel = new JPanel();
+        list.setModel(model);
+        for (int i = 0; i < Event.getEventList().size(); i++) {
+            model.addElement(Event.getEventList().get(i));
+        }
+        list.getSelectionModel().addListSelectionListener(e -> {
+            Event p = list.getSelectedValue();
+            label3.setText("<html>" + p.displayDetailed().replaceAll("<", "&lt;").replaceAll(">",
+                    "&gt;").replaceAll("\n", "<br/>") + "</html>");
+            if (!list.isSelectionEmpty()) {
+                addShow.addActionListener(e1 -> {
+                    try {
+                        currentUser.buyTicket(list.getSelectedValue());
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    //frame.add(label4);
+                });
+            }
+        });
+
+        splitPane.setBounds(10, 140, 600, 300);
+        splitPane.setLeftComponent(new JScrollPane(list));
+        panel.add(label3);
+        splitPane.setRightComponent(panel);
+        myShows = new JButton("MyShows");
+        myShows.setBounds(0, 500, 400, 100);
+        myShows.addActionListener(e -> userShows());
+//        addShow = new JButton("Buy Ticket");
+//        addShow.setBounds(400, 500, 400, 100);
+//        addShow.addActionListener(this);
+        frame.add(splitPane);
+        frame.add(logout);
+        frame.add(myShows);
+        frame.add(addShow);
+        frame.add(label2);
+        frame.add(label);
+        frame.setVisible(true);
+    }
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public void userShows() {
+        frame.dispose();
+        frame = new JFrame();
+        setFrame();
+        JButton back = new JButton("Go Back");
+        back.setBounds(280, 500, 150, 40);
+        back.addActionListener(e -> userFrame());
+        openPdf = new JButton("Open Pdf");
+        openPdf.setBounds(280, 600, 150, 40);
+        label2 = new JLabel("Your Shows: ");
+        label2.setBounds(10, 70, 500, 50);
+        label2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        label3 = new JLabel();
+        list = new JList<Event>();
+        model = new DefaultListModel<>();
+        splitPane = new JSplitPane();
+        panel = new JPanel();
+        list.setModel(model);
+        for (int i = 0; i < currentUser.getMyShows().size(); i++) {
+            model.addElement(currentUser.getMyShows().get(i));
+        }
+        list.getSelectionModel().addListSelectionListener(e -> {
+            Event p = list.getSelectedValue();
+            label3.setText("<html>" + p.displayDetailed().replaceAll("<", "&lt;").replaceAll(">",
+                    "&gt;").replaceAll("\n", "<br/>") + "</html>");
+//            if (!list.isSelectionEmpty()) {
+//                openPdf.addActionListener(e1 -> {
+//                    try {
+//                        File file = new File("./" + list.getSelectedValue().getEventName() + ".pdf");
+//                        if (file.exists()) {
+//                            if (Desktop.isDesktopSupported()) {
+//                                Desktop.getDesktop().open(file);
+//                            } else {
+//                                JOptionPane.showMessageDialog(null, "Not supported!");
+//                            }
+//                        } else {
+//                            JOptionPane.showMessageDialog(null, "File does not exist!");
+//                        }
+//                    } catch (Exception ex) {
+//                        ex.printStackTrace();
+//                    }
+//                });
+//            }
+        });
+        openPdf.addActionListener(e1 -> {
+            if (!list.isSelectionEmpty()) {
+                try {
+                    File file = new File("./" + list.getSelectedValue().getEventName() + ".pdf");
+                    if (file.exists()) {
+                        if (Desktop.isDesktopSupported()) {
+                            Desktop.getDesktop().open(file);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Not supported!");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "File does not exist!");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        splitPane.setBounds(10, 140, 600, 300);
+        splitPane.setLeftComponent(new JScrollPane(list));
+        panel.add(label3);
+        splitPane.setRightComponent(panel);
+        frame.add(openPdf);
+        frame.add(splitPane);
+        frame.add(label2);
+        frame.add(back);
+        frame.setVisible(true);
+    }
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public void organiserShows() {
+        frame.dispose();
+        frame = new JFrame();
+        setFrame();
+        JButton back = new JButton("Go Back");
+        back.setBounds(280, 500, 150, 40);
+        back.addActionListener(e -> organiserFrame());
+        label2 = new JLabel("Your Shows: ");
+        label2.setBounds(10, 70, 500, 50);
+        label2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        label3 = new JLabel();
+        list = new JList<Event>();
+        model = new DefaultListModel<>();
+        splitPane = new JSplitPane();
+        panel = new JPanel();
+        list.setModel(model);
+        for (int i = 0; i < currentOrganiser.getMyShows().size(); i++) {
+            model.addElement(currentOrganiser.getMyShows().get(i));
+        }
+        list.getSelectionModel().addListSelectionListener(e -> {
+            Event p = list.getSelectedValue();
+            label3.setText("<html>" + p.displayDetailed().replaceAll("<", "&lt;").replaceAll(">",
+                    "&gt;").replaceAll("\n", "<br/>") + "</html>");
+        });
+        splitPane.setBounds(10, 140, 600, 300);
+        splitPane.setLeftComponent(new JScrollPane(list));
+        panel.add(label3);
+        splitPane.setRightComponent(panel);
+        frame.add(splitPane);
+        frame.add(label2);
+        frame.add(back);
+        frame.setVisible(true);
+//        textarea = new JTextArea(5, 20);
+//        textarea.setBackground(Color.WHITE);
+//        textarea.setForeground(new Color(0, 0, 0));
+//
+//        textarea.setBounds(10, 140, 600, 300);
+//        textarea.setFont(new Font("Arial", Font.ITALIC, 15));
+//        scrollPane1 = new JScrollPane(textarea);
+//
+//        for (Event event : currentOrganiser.getMyShows()) {
+//            textarea.append(event.toString() + "\n");
+//        }
+        //scrollPane1.setBounds(10, 140, 600, 300);
+//        scrollPane1.setBorder(BorderFactory.createEmptyBorder());
+//        scrollPane1.setViewportBorder(null);
+//
+//        textarea.setEditable(false);
+//        frame.add(scrollPane1);
+//        frame.setVisible(true);
+
+    }
+
+    public void showsList() {
+        textarea = new JTextArea(5, 20);
+        textarea.setBackground(Color.WHITE);
+        textarea.setForeground(new Color(0, 0, 0));
+
+        //textarea.setBounds(10, 140, 600, 300);
+        textarea.setFont(new Font("Arial", Font.ITALIC, 15));
+        scrollPane1 = new JScrollPane(textarea);
+
+
+        for (Event event : Event.getEventList()) {
+            textarea.append(event.toString() + "\n");
+        }
+        //scrollPane1.setBounds(10, 140, 600, 300);
+//        scrollPane1.setBorder(BorderFactory.createEmptyBorder());
+//        scrollPane1.setViewportBorder(null);
+
+        textarea.setEditable(false);
+        frame.add(scrollPane1);
+        frame.setVisible(true);
+
+    }
+
+    @SuppressWarnings({"checkstyle:MethodLength", "checkstyle:SuppressWarnings"})
+    public void addShow() {
+        frame.dispose();
+        frame = new JFrame();
+        setFrame();
+        JPanel addEvent = new JPanel();
+        label2 = new JLabel("Add Event: ");
+        label2.setBounds(10, 70, 500, 50);
+        label2.setFont(new Font("MV Boli", Font.BOLD, 20));
+        addEvent.setBounds(10, 130, 300, 300);
+        addEvent.setBackground(Color.darkGray);
+        JTextField event = new JTextField();
+        event.setBounds(20, 40, 130, 20);
+        JTextField tickets = new JTextField();
+        tickets.setBounds(20, 80, 130, 20);
+        JLabel ticketsName = new JLabel("No. of Tickets");
+        ticketsName.setForeground(new Color(255, 255, 255));
+        ticketsName.setBounds(20, 60, 130, 20);
+        JLabel eventName = new JLabel("Event Name");
+        eventName.setForeground(new Color(255, 255, 255));
+        eventName.setBounds(20, 20, 130, 20);
+        JTextField date = new JTextField();
+        date.setBounds(20, 120, 130, 20);
+        JLabel dateName = new JLabel("Date");
+        dateName.setForeground(new Color(255, 255, 255));
+        dateName.setBounds(20, 100, 130, 20);
+        JTextField time = new JTextField();
+        time.setBounds(20, 160, 130, 20);
+        JLabel timeName = new JLabel("Time");
+        timeName.setForeground(new Color(255, 255, 255));
+        timeName.setBounds(20, 140, 130, 20);
+        JTextArea desc = new JTextArea();
+        desc.setBounds(20, 200, 200, 50);
+        JLabel descName = new JLabel("Description");
+        descName.setForeground(new Color(255, 255, 255));
+        descName.setBounds(20, 180, 130, 20);
+        JButton add = new JButton("Add Event");
+        add.setBounds(600, 300, 100, 50);
+        add.addActionListener(e -> {
+            currentOrganiser.createEvent(event.getText(), Integer.parseInt(tickets.getText()),
+                    desc.getText(), date.getText(), time.getText());
+        });
+        JButton back = new JButton("Go Back");
+        back.setBounds(600, 250, 100, 50);
+        back.addActionListener(e -> organiserFrame());
+        addEvent.add(desc);
+        addEvent.add(descName);
+        addEvent.add(time);
+        addEvent.add(timeName);
+        addEvent.add(ticketsName);
+        addEvent.add(date);
+        addEvent.add(dateName);
+        addEvent.add(eventName);
+        addEvent.add(tickets);
+        addEvent.add(event);
+        frame.add(add);
+        frame.add(back);
+        frame.add(label2);
+        frame.add(addEvent);
+        addEvent.setLayout(null);
+        addEvent.setVisible(true);
+        frame.setVisible(true);
     }
 
     //Effects: Runs the Application
@@ -728,8 +1115,12 @@ public class TicketCounter implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
+        if (e.getSource() == myShows) {
+            organiserShows();
+        }
+        if (e.getSource() == addShow) {
+            addShow();
+        }
 
     }
 

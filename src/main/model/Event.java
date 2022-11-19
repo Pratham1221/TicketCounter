@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,7 +66,7 @@ public class Event implements Writable {
     }
 
     //Effects: Returns a brief description of the event
-    public String display() {
+    public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         try {
             return String.format("Event name: %-20s %s%n", getEventName(),
@@ -126,7 +125,7 @@ public class Event implements Writable {
                 arr[i] = i + 1;
             }
             for (int i = 0; i < getEventList().size(); i++) {
-                s =  s + arr[i] + " " + getEventList().get(i).display() + "\n";
+                s =  s + arr[i] + " " + getEventList().get(i).toString() + "\n";
             }
         }
         return s;

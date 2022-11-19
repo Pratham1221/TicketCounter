@@ -4,7 +4,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 /*Represents an Organiser of an event having name, username and
@@ -70,7 +69,7 @@ public class Organiser implements Writable {
                 arr[i] = i + 1;
             }
             for (int i = 0; i < this.getMyShows().size(); i++) {
-                s =  s + arr[i] + " " + this.getMyShows().get(i).display() + "\n";
+                s =  s + arr[i] + " " + this.getMyShows().get(i).toString() + "\n";
             }
         }
         return s;

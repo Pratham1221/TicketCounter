@@ -29,7 +29,7 @@ public class UserTest {
     @Test
     void testAllEvents() throws Exception {
         u1.buyTicket(e1);
-        assertEquals("1 " + u1.getMyShows().get(0).display() + "\n", u1.allEvents());
+        assertEquals("1 " + u1.getMyShows().get(0).toString() + "\n", u1.allEvents());
         u1.getMyShows().remove(e1);
         assertEquals("There are no events\n", u1.allEvents());
     }

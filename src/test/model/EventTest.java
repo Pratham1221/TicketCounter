@@ -41,12 +41,12 @@ class EventTest {
 
     @Test
     void testDisplay() {
-        assertEquals(String.format("Event name: Hello Hacks          Wed Dec 21%n"), e1.display());
+        assertEquals(String.format("Event name: Hello Hacks          Wed Dec 21%n"), e1.toString());
         e1.setEventName("hello hecks");
-        assertEquals(String.format("Event name: hello hecks          Wed Dec 21%n"), e1.display());
+        assertEquals(String.format("Event name: hello hecks          Wed Dec 21%n"), e1.toString());
         e1.setTime("7pm");
         e1.setDate("12-12/2022");
-        assertEquals("Error", e1.display());
+        assertEquals("Error", e1.toString());
         Event.getEventList().remove(e1);
     }
 
@@ -66,7 +66,7 @@ class EventTest {
 
     @Test
     void testShowEvents() {
-        assertEquals("1 " + Event.getEventList().get(0).display() + "\n", Event.showEvent());
+        assertEquals("1 " + Event.getEventList().get(0).toString() + "\n", Event.showEvent());
         Event.getEventList().remove(e1);
         assertEquals("There are no events\n", Event.showEvent());
     }

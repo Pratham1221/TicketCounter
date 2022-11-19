@@ -49,9 +49,10 @@ public class User implements Writable {
             e.setTickets(e.getTickets() - 1);
             e.createTicket(this.name);
             //e.getOrganiser().getMessages().add(getName() + "purchased a ticket");
-            return "You have successfully bought a ticket for " + e.getEventName()
-                    + " \nYour ticket has been generated! "
-                    + "Please find it in " + System.getProperty("user.dir") + "\\" + e.getEventName() + ".pdf";
+//            return "You have successfully bought a ticket for " + e.getEventName()
+//                    + " \nYour ticket has been generated! "
+//                    + "Please find it in " + System.getProperty("user.dir") + "\\" + e.getEventName() + ".pdf";
+            return "Thanks for buying";
         }
     }
 
@@ -79,7 +80,7 @@ public class User implements Writable {
                 arr[i] = i + 1;
             }
             for (int i = 0; i < this.getMyShows().size(); i++) {
-                s =  s + arr[i] + " " + this.getMyShows().get(i).display() + "\n";
+                s =  s + arr[i] + " " + this.getMyShows().get(i).toString() + "\n";
             }
         }
         return s;

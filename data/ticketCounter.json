@@ -1,8 +1,37 @@
 {
-    "Events List": [],
-    "Organisers List": [{
-        "User Name": "pratham1221",
-        "name": "pratham"
-    }],
+    "Events List": [
+        {
+            "date": "21-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is a hackathon",
+            "Tickets": 20,
+            "EventName": "hello hacks",
+            "time": "7pm"
+        },
+        {
+            "date": "12-12-2022",
+            "Organiser": {
+                "User Name": "pratha12",
+                "name": "pratham"
+            },
+            "Description": "i is",
+            "Tickets": 20,
+            "EventName": "hello",
+            "time": "4pm"
+        }
+    ],
+    "Organisers List": [
+        {
+            "User Name": "pratham1221",
+            "name": "pratham"
+        },
+        {
+            "User Name": "pratha12",
+            "name": "pratham"
+        }
+    ],
     "Users List": []
 }

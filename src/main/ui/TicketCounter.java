@@ -28,7 +28,6 @@ public class TicketCounter implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     JFrame frame;
-    JTextArea textarea;
     JScrollPane scrollPane1;
     JButton myShows;
     JButton addShow;

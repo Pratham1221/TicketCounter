@@ -48,6 +48,8 @@ public class User implements Writable {
             myShows.add(e);
             e.setTickets(e.getTickets() - 1);
             e.createTicket(this.name);
+            EventLog.getInstance().logEvent(new Events(this.getName() + " purchased a ticket for "
+                    + e.getEventName()));
             //e.getOrganiser().getMessages().add(getName() + "purchased a ticket");
             return "You have successfully bought a ticket for " + e.getEventName()
                     + " \nYour ticket has been generated! "

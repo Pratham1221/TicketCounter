@@ -1,8 +1,7 @@
 package ui;
 
+import model.*;
 import model.Event;
-import model.Organiser;
-import model.User;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -15,6 +14,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 // TicketCounter Application
@@ -58,7 +58,6 @@ public class TicketCounter implements ActionListener {
         );
 
         startingWindow();
-
         //runApp();
     }
 
@@ -97,6 +96,11 @@ public class TicketCounter implements ActionListener {
         }
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
+                Iterator i = EventLog.getInstance().iterator();
+                while (i.hasNext()) {
+                    Events event = (Events)i.next();
+                    System.out.println(event.toString());
+                }
                 int result = JOptionPane.showConfirmDialog(frame,
                         "Do you want to save your progress ?", "saving",
                         JOptionPane.YES_NO_OPTION);
@@ -131,6 +135,15 @@ public class TicketCounter implements ActionListener {
         ImageIcon logo = new ImageIcon("./data/logo.jpeg");
         frame.setIconImage(logo.getImage());
         frame.getContentPane().setBackground(new Color(211, 211, 211));
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                Iterator i = EventLog.getInstance().iterator();
+                while (i.hasNext()) {
+                    Events event = (Events)i.next();
+                    System.out.println(event.toString());
+                }
+            }
+        });
     }
 
     //Effects : Creates a panel and sub text fields for organiser login
@@ -219,7 +232,7 @@ public class TicketCounter implements ActionListener {
             for (int i = 0; i < User.getUsersList().size(); i++) {
                 if (User.getUsersList().get(i).getUserName().equals(userName)
                         && User.getUsersList().get(i).getName().equals(name)) {
-                    System.out.println("welcome");
+                    //System.out.println("welcome");
                     currentUser = User.getUsersList().get(i);
                     count++;
                     userFrame();
@@ -273,7 +286,7 @@ public class TicketCounter implements ActionListener {
             for (int i = 0; i < Organiser.getOrganisersList().size(); i++) {
                 if (Organiser.getOrganisersList().get(i).getUserName().equals(userName)
                         && Organiser.getOrganisersList().get(i).getName().equals(name)) {
-                    System.out.println("welcome");
+                    //System.out.println("welcome");
                     currentOrganiser = Organiser.getOrganisersList().get(i);
                     count++;
                     organiserFrame();
@@ -296,7 +309,7 @@ public class TicketCounter implements ActionListener {
         } else {
             Organiser o = new Organiser(name, username);
             currentOrganiser = o;
-            System.out.println("welcome");
+            //System.out.println("welcome");
             organiserFrame();
         }
     }
@@ -310,7 +323,7 @@ public class TicketCounter implements ActionListener {
         } else {
             User u = new User(name, username);
             currentUser = u;
-            System.out.println("welcome");
+            //System.out.println("welcome");
             userFrame();
         }
     }

@@ -6,14 +6,14 @@ sell their tickets can use this platform to sell tickets in "pdf"
 
 I am really excited for this project as it is my very first java project and I personally feel it 
 can be used by people and have some real life help but in worst case if it turned out to be redundant I will 
-definitley use it if I ever organised an event.
+definitely use it if I ever organised an event.
 
 Language: Java
 
 ## User Stories
 
 - As a user, I want to be able to add my event on the software.
-- As a user, I want to be able to recieve a ticket of the show with my credentials.
+- As a user, I want to be able to receive a ticket of the show with my credentials.
 - As a user, I want to be able to see the number of tickets available for a particular show.
 - As a user, I want to be able to see the current shows and buy tickets.
 - As a user, I want to be able to load my previous data.
@@ -32,3 +32,14 @@ Language: Java
   a dialog box with instructions to save the data will appear.
 - You can reload the state of my application at the very start of the program, a dialog
   box will appear with instructions to load prevoius saved data.
+
+## Phase 4: Task 2
+
+Fri Dec 02 01:40:04 PST 2022
+pratham created an event named: Nabeel graduation
+Fri Dec 02 01:40:21 PST 2022
+pratham purchased a ticket for HouseParty
+Fri Dec 02 01:40:23 PST 2022
+pratham purchased a ticket for Nabeel graduation
+
+

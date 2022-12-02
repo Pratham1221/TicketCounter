@@ -32,6 +32,17 @@
             "Tickets": 20,
             "EventName": "Hello camp",
             "time": "6pm"
+        },
+        {
+            "date": "12-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "It is a house party!",
+            "Tickets": 20,
+            "EventName": "HouseParty",
+            "time": "8pm"
         }
     ],
     "Organisers List": [

@@ -37,6 +37,7 @@ public class Organiser implements Writable {
     //Effects: Creates an event with the following inputs and add the event to the organiser's myShows
     public void createEvent(String eventName, int tickets, String description, String date, String time) {
         Event e = new Event(this,eventName, tickets, description, date, time);
+        EventLog.getInstance().logEvent(new Events(this.getName() + " created an event named: " + eventName));
         myShows.add(e);
     }
 

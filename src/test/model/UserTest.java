@@ -3,6 +3,8 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -23,6 +25,8 @@ public class UserTest {
                 + "Please find it in " + System.getProperty("user.dir") + "\\" +
                 e1.getEventName() + ".pdf", u1.buyTicket(e1));
         assertEquals("You have already purchased a ticket for this show!",u1.buyTicket(e1));
+        Iterator<Events> i = EventLog.getInstance().iterator();
+        assertEquals(u1.getName() + " purchased a ticket for " + e1.getEventName(),i.next().getDescription());
 
     }
 

@@ -2,6 +2,9 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrganiserTest {
@@ -18,6 +21,8 @@ public class OrganiserTest {
         o1.createEvent("Hello Hacks",21,
                 "It is hackathon","21-12-2022","7:30");
         assertEquals(1,Event.getEventList().size());
+        Iterator<Events> i = EventLog.getInstance().iterator();
+        assertEquals(o1.getName() + " created an event named: " + "Hello Hacks",i.next().getDescription());
     }
 
     //@Test

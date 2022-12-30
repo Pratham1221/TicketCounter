@@ -29,9 +29,20 @@
                 "name": "pratham"
             },
             "Description": "It is a begineer hackathon",
-            "Tickets": 20,
+            "Tickets": 19,
             "EventName": "Hello camp",
             "time": "6pm"
+        },
+        {
+            "date": "12-12-2022",
+            "Organiser": {
+                "User Name": "pratham1221",
+                "name": "pratham"
+            },
+            "Description": "it is hackathn",
+            "Tickets": 20,
+            "EventName": "hackathon",
+            "time": "9"
         }
     ],
     "Organisers List": [
@@ -44,5 +55,9 @@
             "name": "pratham"
         }
     ],
-    "Users List": []
+    "Users List": [{
+        "Shows List": [],
+        "User Name": "pratham1221",
+        "name": "pratham"
+    }]
 }

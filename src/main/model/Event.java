@@ -21,7 +21,6 @@ public class Event implements Writable {
         return organiser;
     }
 
-    //private ArrayList<User> attendees;
     private Organiser organiser;
     private String eventName;
     private int tickets;

@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /*Represents an Event having Event Name, event organiser, attendees, no. of tickets,
-  event description, date and time of event and a list of all events.
+  event description, date, time of event and a list of all events.
  */
 public class Event implements Writable {
     private static ArrayList<Event> eventList = new ArrayList<Event>();

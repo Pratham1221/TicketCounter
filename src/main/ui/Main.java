@@ -9,7 +9,5 @@ import java.util.Iterator;
 public class Main {
     public static void main(String[] args) throws Exception {
         new TicketCounter();
-
-        //System.out.println("Bhenchod");
     }
 }

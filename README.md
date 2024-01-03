@@ -1,12 +1,25 @@
 # TicketCounter
-This is a tickets buying and selling platorm where organisers can sell their tickets
-and people can buy tickets for their favourite shows. People who want to  
-sell their tickets can use this platform to sell tickets in "pdf" 
-form where the ticket will have the desired credentials of the person buying their tickets.
 
-I am really excited for this project as it is my very first java project and I personally feel it  
-can be used by people and have some real life help but in worst case if it turned out  
-to be redundant I will definitely use it if I ever organised an event.
+[//]: # (This is a tickets buying and selling platorm where organisers can sell their tickets)
+
+[//]: # (and people can buy tickets for their favourite shows. People who want to  )
+
+[//]: # (sell their tickets can use this platform to sell tickets in "pdf" )
+
+[//]: # (form where the ticket will have the desired credentials of the person buying their tickets.)
+
+[//]: # ()
+[//]: # (I am really excited for this project as it is my very first java project and I personally feel it  )
+
+[//]: # (can be used by people and have some real life help but in worst case if it turned out  )
+
+[//]: # (to be redundant I will definitely use it if I ever organised an event.)
+This is a Java based application which can be used to buy and sell tickets for shows.
+You can create an Organiser account if you want to organise an event and a user account if you 
+just want to buy tickets for the existing events. Tickets bought will be saved on you computer 
+in a "pdf" format.
+
+Please have fun testing my application. Let me know if you find any bugs.
 
 Language: Java
 

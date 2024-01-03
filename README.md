@@ -19,7 +19,7 @@ Language: Java
 - As a user, I want to be able to load my previous data.
 - As a user, I want to be able to save my data.
 
-## Instructions for Grader
+## Instructions
 
 - You can generate the first required event related to adding an event by logging in  
   as an organiser and click on add event.
@@ -33,7 +33,7 @@ Language: Java
 - You can reload the state of my application at the very start of the program, a dialog  
   box will appear with instructions to load prevoius saved data.
 
-## Phase 4: Task 2
+## Event Log
 
 Fri Dec 02 01:40:04 PST 2022  
 pratham created an event named: Nabeel graduation  
@@ -42,7 +42,7 @@ pratham purchased a ticket for HouseParty
 Fri Dec 02 01:40:23 PST 2022  
 pratham purchased a ticket for Nabeel graduation
 
-## Phase 4: Task 3
+## The Program Design
 
 - My design has three main classes Event, Organiser and User.
 - Each event has an organiser and each organiser has a list of events
@@ -53,7 +53,7 @@ pratham purchased a ticket for Nabeel graduation
   console. Both Organiser and User are in some way dependent on both eventlog and events 
   to keep track of logs.
 
-## Some Changes
+## Some future improvements...
 
 - Make association between event and user class such that each event has a list of  
   users that are attending the event, this is missing in the current implementation.
